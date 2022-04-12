@@ -54,6 +54,12 @@ Plug 'Lokaltog/vim-easymotion'
 
 call plug#end()
 
+" Turn on syntax highlighting
+syntax on
+
+" Turn on the detection, plugin, and indent configurations all at once
+filetype plugin indent on
+
 " Set my favorite colorscheme
 colorscheme gruvbox 
 
@@ -110,12 +116,6 @@ nnoremap k gk
 set splitbelow
 set splitright
 
-" Turn on the detection, plugin, and indent configurations all at once
-filetype plugin indent on
-
-" Turn on syntax highlighting
-syntax on
-
 " Set completeopt to have a better completion experience
 " :help completeopt
 " menuone: popup even when there's only one match
@@ -157,6 +157,9 @@ local opts = {
                 checkOnSave = {
                     command = "clippy"
                 },
+		rustfmt = {
+		    overrideCommand = "cargo +nightly fmt"
+		},
             }
         }
     },
@@ -212,6 +215,9 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 " this removes the jitter when warnings/errors flow in
 set signcolumn=yes
 
+" Auto FMT after save
+autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 2000)
+
 " Goto previous/next diagnostic warning/error
 nnoremap <silent> g[ <cmd>lua vim.diagnostic.goto_prev()<CR>
 nnoremap <silent> g] <cmd>lua vim.diagnostic.goto_next()<CR>
@@ -229,6 +235,7 @@ nnoremap <silent> gW           <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 nnoremap <silent> gd           <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> ga           <cmd>lua vim.lsp.buf.code_action()<CR>
 nnoremap <silent> <space>rn    <cmd>lua vim.lsp.buf.rename()<CR>
+nnoremap <silent> <space>f     <cmd>lua vim.lsp.buf.formatting()<CR>
 
 " NERD Tree
 nnoremap <leader>tn :NERDTreeFocus<CR>
