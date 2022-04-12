@@ -49,8 +49,12 @@ Plug 'tpope/vim-surround'
 " Filetree plugin
 Plug 'preservim/nerdtree'
 
+" Easymotion for quick movement
+Plug 'Lokaltog/vim-easymotion'
+
 call plug#end()
 
+" Set my favorite colorscheme
 colorscheme gruvbox 
 
 " For finger fumbling (thanks rperce)
@@ -63,6 +67,10 @@ command! WA wa
 
 " Enable mouse mode in all modes (GASP)
 set mouse=a
+
+" Enable hybrid line numbers (show absolute for current line and relative
+" otherwise)
+set number relativenumber
 
 " Enable persistent undo
 set undodir=~/.vim/undo
