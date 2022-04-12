@@ -61,6 +61,9 @@ command! Q q
 command! Wa wa
 command! WA wa
 
+" Enable mouse mode in all modes (GASP)
+set mouse=a
+
 " Enable persistent undo
 set undodir=~/.vim/undo
 set undofile
