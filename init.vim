@@ -237,6 +237,12 @@ require("toggleterm").setup{
 }
 EOF
 
+" Display lsp status in airline
+let g:airline#extensions#nvimlsp#enabled = 1
+let g:airline#extensions#nvimlsp#error_symbol = 'E'
+let g:airline#extensions#nvimlsp#warning_symbol = 'W'
+
+
 " Set updatetime for CursorHold
 " 300ms of no cursor movement to trigger CursorHold
 set updatetime=300
@@ -282,7 +288,7 @@ nnoremap <leader>ff :Telescope live_grep<CR>
 " Commentary 
 " maps gc in visual mode to toggle
 
-" Cargo commands
+" Commands
 nnoremap <leader>cc <cmd>TermExec cmd="cargo check"<CR>
 nnoremap <leader>ct <cmd>TermExec cmd="cargo nextest run"<CR>
-nnoremap <leader>ct <cmd>TermExec cmd="cargo nextest run"<CR>
+nnoremap <leader>cs <cmd>TermExec cmd="git number" go_back=0<CR>
