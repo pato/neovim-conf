@@ -251,16 +251,16 @@ nnoremap <silent> g] <cmd>lua vim.diagnostic.goto_next()<CR>
 
 " Rust-analyzer shortcuts
 " Code navigation shortcuts
-nnoremap <silent> <c-]>        <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> <c-]>        <cmd>Telescope lsp_definitions<CR>
 nnoremap <silent> K            <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> gD           <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> gD           <cmd>Telescope lsp_implementations<CR>
 nnoremap <silent> <c-k>        <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> 1gD          <cmd>lua vim.lsp.buf.type_definition()<CR>
-nnoremap <silent> gr           <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> g0           <cmd>lua vim.lsp.buf.document_symbol()<CR>
-nnoremap <silent> gW           <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-nnoremap <silent> gd           <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> ga           <cmd>lua vim.lsp.buf.code_action()<CR>
+nnoremap <silent> 1gD          <cmd>Telescope lsp_type_definitions<CR>
+nnoremap <silent> gr           <cmd>Telescope lsp_references<CR>
+nnoremap <silent> g0           <cmd>Telescope lsp_document_symbols<CR>
+nnoremap <silent> gW           <cmd>Telescope lsp_dynamic_workspace_symbols<CR>
+nnoremap <silent> gd           <cmd>Telescope lsp_definitions<CR>
+nnoremap <silent> ga           <cmd>Telescope lsp_code_actions<CR>
 nnoremap <silent> <space>rn    <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> <space>f     <cmd>lua vim.lsp.buf.formatting()<CR>
 
@@ -281,6 +281,3 @@ nnoremap <leader>ff :Telescope live_grep<CR>
 nnoremap <leader>cc <cmd>TermExec cmd="cargo check"<CR>
 nnoremap <leader>ct <cmd>TermExec cmd="cargo nextest run"<CR>
 nnoremap <leader>ct <cmd>TermExec cmd="cargo nextest run"<CR>
-
-" Git commands
-nnoremap <leader>cs <cmd>TermExec cmd="git number" go_back=0<CR>
