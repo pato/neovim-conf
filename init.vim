@@ -124,6 +124,11 @@ nnoremap k gk
 set splitbelow
 set splitright
 
+" Zoom in and zoom out of split panes
+noremap Zz <c-w>_ \| <c-w>\|
+noremap Zo <c-w>=
+
+
 " Set completeopt to have a better completion experience
 " :help completeopt
 " menuone: popup even when there's only one match
