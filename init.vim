@@ -55,6 +55,11 @@ Plug 'Lokaltog/vim-easymotion'
 " Toggle-term for more ergonomic terminal experience
 Plug 'akinsho/toggleterm.nvim'
 
+" Telescope for fuzzy pickers on steroids
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+
 call plug#end()
 
 " Turn on syntax highlighting
@@ -265,8 +270,9 @@ nnoremap <leader>tt :NERDTreeToggle<CR>
 nnoremap <leader>tf :NERDTreeFind<CR>
 
 " FZF
-nnoremap <leader>fo :GFiles<CR>
-nnoremap <leader>ff :Ag<CR>
+nnoremap <leader>fo :Telescope find_files<CR>
+nnoremap <leader>fg :Telescope git_files<CR>
+nnoremap <leader>ff :Telescope live_grep<CR>
 
 " Commentary 
 " maps gc in visual mode to toggle
