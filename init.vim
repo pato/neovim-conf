@@ -52,6 +52,9 @@ Plug 'preservim/nerdtree'
 " Easymotion for quick movement
 Plug 'Lokaltog/vim-easymotion'
 
+" Toggle-term for more ergonomic terminal experience
+Plug 'akinsho/toggleterm.nvim'
+
 call plug#end()
 
 " Turn on syntax highlighting
@@ -157,9 +160,9 @@ local opts = {
                 checkOnSave = {
                     command = "clippy"
                 },
-		rustfmt = {
-		    overrideCommand = "cargo +nightly fmt"
-		},
+		-- rustfmt = {
+		--     overrideCommand = "cargo +nightly fmt"
+		-- },
             }
         }
     },
@@ -205,6 +208,25 @@ cmp.setup({
 })
 EOF
 
+" Setup toggle-term 
+lua <<EOF
+require("toggleterm").setup{
+  size = function(term)
+    if term.direction == "horizontal" then
+      return 15
+    elseif term.direction == "vertical" then
+      return vim.o.columns * 0.4
+    end
+  end,
+  open_mapping = [[<c-\>]],
+  hide_numbers = true, -- hide the number column in toggleterm buffers
+  shade_terminals = true,
+  start_in_insert = true,
+  -- direction = 'vertical' | 'horizontal' | 'window' | 'float',
+  persist_size = true,
+}
+EOF
+
 " Set updatetime for CursorHold
 " 300ms of no cursor movement to trigger CursorHold
 set updatetime=300
@@ -247,4 +269,12 @@ nnoremap <leader>fo :GFiles<CR>
 nnoremap <leader>ff :Ag<CR>
 
 " Commentary 
-nnoremap <leader>cc :Commentary<CR>
+" maps gc in visual mode to toggle
+
+" Cargo commands
+nnoremap <leader>cc <cmd>TermExec cmd="cargo check"<CR>
+nnoremap <leader>ct <cmd>TermExec cmd="cargo nextest run"<CR>
+nnoremap <leader>ct <cmd>TermExec cmd="cargo nextest run"<CR>
+
+" Git commands
+nnoremap <leader>cs <cmd>TermExec cmd="git number" go_back=0<CR>
