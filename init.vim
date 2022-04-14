@@ -271,6 +271,10 @@ let g:airline#extensions#nvimlsp#enabled = 1
 let g:airline#extensions#nvimlsp#error_symbol = 'E'
 let g:airline#extensions#nvimlsp#warning_symbol = 'W'
 
+" Sets the cursor to a vertical line for insert mode, underline for replace mode, and block for normal mode
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[2 q"
 
 " Set updatetime for CursorHold
 " 300ms of no cursor movement to trigger CursorHold
