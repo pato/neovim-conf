@@ -266,6 +266,11 @@ vim.ui.select = require"popui.ui-overrider"
 vim.ui.input = require"popui.input-overrider"
 EOF
 
+" Super hack but I cannot for the life of me get <C-U> to give vim the correct
+" key code (it always outputs <BS>)
+" So let's map <C-E> to <C-U>
+nnoremap <C-E> <C-U>
+
 " Display lsp status in airline
 let g:airline#extensions#nvimlsp#enabled = 1
 let g:airline#extensions#nvimlsp#error_symbol = 'E'
