@@ -89,6 +89,9 @@ syntax on
 filetype plugin indent on
 
 " Set my favorite colorscheme
+let g:gruvbox_italic = 1
+let g:gruvbox_contrast_dark = 'soft'
+let g:gruvbox_contrast_light = 'soft'
 colorscheme gruvbox 
 
 " For finger fumbling (thanks rperce)
