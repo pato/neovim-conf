@@ -294,6 +294,9 @@ set signcolumn=yes
 " Auto FMT after save
 autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 2000)
 
+" Close NERDTree after opening a file
+let NERDTreeQuitOnOpen=1
+
 " Goto previous/next diagnostic warning/error
 nnoremap <silent> g[ <cmd>lua vim.diagnostic.goto_prev()<CR>
 nnoremap <silent> g] <cmd>lua vim.diagnostic.goto_next()<CR>
