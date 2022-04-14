@@ -313,6 +313,7 @@ nnoremap <silent> g0           <cmd>Telescope lsp_document_symbols<CR>
 nnoremap <silent> gW           <cmd>Telescope lsp_dynamic_workspace_symbols<CR>
 nnoremap <silent> gd           <cmd>Telescope lsp_definitions<CR>
 nnoremap <silent> ga           <cmd>Telescope lsp_code_actions<CR>
+nnoremap <silent> ge           <cmd>Telescope diagnostics<CR>
 nnoremap <silent> <space>rn    <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> <space>f     <cmd>lua vim.lsp.buf.formatting()<CR>
 
