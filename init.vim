@@ -60,6 +60,10 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
+" Popui for better select and input (needs popfix)
+Plug 'hood/popui.nvim'
+Plug 'RishabhRD/popfix'
+
 call plug#end()
 
 " Turn on syntax highlighting
@@ -235,6 +239,12 @@ require("toggleterm").setup{
   -- direction = 'vertical' | 'horizontal' | 'window' | 'float',
   persist_size = true,
 }
+EOF
+
+" Set up popui.nvim
+lua <<EOF
+vim.ui.select = require"popui.ui-overrider"
+vim.ui.input = require"popui.input-overrider"
 EOF
 
 " Display lsp status in airline
