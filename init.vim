@@ -57,6 +57,7 @@ Plug 'akinsho/toggleterm.nvim'
 " Telescope for fuzzy pickers on steroids
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-ui-select.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
 " Popui for better select and input (needs popfix)
@@ -259,9 +260,21 @@ require("toggleterm").setup{
 }
 EOF
 
+" Set up telescope-ui-select
+lua <<EOF
+require("telescope").setup {
+  extensions = {
+    ["ui-select"] = {
+      require("telescope.themes").get_dropdown { }
+    }
+  }
+}
+require("telescope").load_extension("ui-select")
+EOF
+
 " Set up popui.nvim
 lua <<EOF
-vim.ui.select = require"popui.ui-overrider"
+-- vim.ui.select = require"popui.ui-overrider" -- switched to telescope-ui-select
 vim.ui.input = require"popui.input-overrider"
 EOF
 
