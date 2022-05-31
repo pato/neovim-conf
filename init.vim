@@ -64,6 +64,9 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'hood/popui.nvim'
 Plug 'RishabhRD/popfix'
 
+" For automatically closing parans, brackets, quotes, etc...
+Plug 'jiangmiao/auto-pairs'
+
 call plug#end()
 
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
