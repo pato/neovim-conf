@@ -174,7 +174,7 @@ local nvim_lsp = require'lspconfig'
 local opts = {
     tools = { -- rust-tools options
         autoSetHints = true,
-        hover_with_actions = true,
+        hover_with_actions = false,
         inlay_hints = {
             show_parameter_hints = false,
             parameter_hints_prefix = "",
@@ -300,7 +300,7 @@ let &t_EI = "\<Esc>[2 q"
 " 300ms of no cursor movement to trigger CursorHold
 set updatetime=300
 " Show diagnostic popup on cursor hold
-autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
+"autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 
 " have a fixed column for the diagnostics to appear in
 " this removes the jitter when warnings/errors flow in
