@@ -333,6 +333,7 @@ nnoremap <silent> ge           <cmd>Telescope diagnostics<CR>
 nnoremap <silent> <space>rn    <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> <space>f     <cmd>lua vim.lsp.buf.formatting()<CR>
 nnoremap <leader>gc 	       <cmd>RustOpenCargo<CR>
+nnoremap <leader>gr 	       <cmd>RustRunnables<CR>
 
 " NERD Tree
 nnoremap <leader>tn :NERDTreeFocus<CR>
