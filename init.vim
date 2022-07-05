@@ -67,6 +67,9 @@ Plug 'RishabhRD/popfix'
 " For automatically closing parans, brackets, quotes, etc...
 Plug 'jiangmiao/auto-pairs'
 
+" Tree Sitter for AST level parsing of languages
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
 call plug#end()
 
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
@@ -354,3 +357,24 @@ nnoremap <C-P>      <cmd>Telescope git_files<CR>
 nnoremap <leader>cc <cmd>TermExec cmd="cargo check"<CR>
 nnoremap <leader>ct <cmd>TermExec cmd="cargo nextest run"<CR>
 nnoremap <leader>cs <cmd>TermExec cmd="git status" go_back=0<CR>
+
+" Configure tree Sitter
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  -- A list of parser names, or "all"
+  ensure_installed = { "rust" },
+
+  -- Install parsers synchronously (only applied to `ensure_installed`)
+  sync_install = false,
+
+  highlight = {
+    enable = true,
+
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
+EOF
