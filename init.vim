@@ -69,6 +69,7 @@ Plug 'jiangmiao/auto-pairs'
 
 " Tree Sitter for AST level parsing of languages
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-context'
 
 call plug#end()
 
@@ -376,5 +377,32 @@ require'nvim-treesitter.configs'.setup {
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
   },
+}
+EOF
+
+" Use treesitter for folding
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+
+" Open all folds on open 
+" autocmd BufReadPost,FileReadPost * normal zR
+
+" Configure treesitter context so it shows which file/function i'm in
+lua <<EOF
+require'treesitter-context'.setup{
+    enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+    max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+    trim_scope = 'outer', -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
+    patterns = { -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
+        -- For all filetypes
+        -- Note that setting an entry here replaces all other patterns for this entry.
+        -- By setting the 'default' entry below, you can control which nodes you want to
+        -- appear in the context window.
+        default = {
+            'class',
+            'function',
+            'method',
+        },
+    },
 }
 EOF
