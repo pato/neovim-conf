@@ -325,7 +325,7 @@ nnoremap <silent> gD           <cmd>Telescope lsp_implementations<CR>
 nnoremap <silent> <c-k>        <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> 1gD          <cmd>Telescope lsp_type_definitions<CR>
 nnoremap <silent> gr           <cmd>Telescope lsp_references<CR>
-nnoremap <silent> g0           <cmd>Telescope lsp_document_symbols<CR>
+nnoremap <silent> gw           <cmd>Telescope lsp_document_symbols<CR>
 nnoremap <silent> gW           <cmd>Telescope lsp_dynamic_workspace_symbols<CR>
 nnoremap <silent> gd           <cmd>Telescope lsp_definitions<CR>
 nnoremap <silent> ga           <cmd>lua vim.lsp.buf.code_action()<CR>
@@ -333,6 +333,7 @@ nnoremap <silent> ge           <cmd>Telescope diagnostics<CR>
 nnoremap <silent> <space>rn    <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> <space>f     <cmd>lua vim.lsp.buf.formatting()<CR>
 nnoremap <leader>gc 	       <cmd>RustOpenCargo<CR>
+nnoremap <leader>gm 	       <cmd>RustParentModule<CR>
 nnoremap <leader>gr 	       <cmd>RustRunnables<CR>
 
 " NERD Tree
