@@ -385,7 +385,7 @@ set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 
 " Open all folds on open 
-" autocmd BufReadPost,FileReadPost * normal zR
+autocmd BufReadPost,FileReadPost * normal zR
 
 " Configure treesitter context so it shows which file/function i'm in
 lua <<EOF
