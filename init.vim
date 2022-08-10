@@ -3,8 +3,11 @@ call plug#begin()
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-" My favorite theme
+" My favorite themes
 Plug 'morhetz/gruvbox'
+Plug 'savq/melange'
+Plug 'shaunsingh/nord.nvim'
+Plug 'luisiacc/gruvbox-baby', {'branch': 'main'}
 
 " Collection of common configurations for the Nvim LSP client
 Plug 'neovim/nvim-lspconfig'
