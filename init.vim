@@ -361,6 +361,7 @@ nnoremap <C-P>      <cmd>Telescope git_files<CR>
 nnoremap <leader>cc <cmd>TermExec cmd="cargo check"<CR>
 nnoremap <leader>ct <cmd>TermExec cmd="cargo nextest run"<CR>
 nnoremap <leader>cs <cmd>TermExec cmd="git status" go_back=0<CR>
+nnoremap <leader>gs <cmd>Telescope git_status<CR>
 
 " Configure tree Sitter
 lua <<EOF
