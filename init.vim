@@ -181,7 +181,7 @@ local nvim_lsp = require'lspconfig'
 local opts = {
     tools = { -- rust-tools options
         autoSetHints = true,
-        hover_with_actions = true,
+        -- hover_with_actions = true,
         inlay_hints = {
             show_parameter_hints = false,
             parameter_hints_prefix = "<-",
@@ -327,7 +327,8 @@ nnoremap <silent> g] <cmd>lua vim.diagnostic.goto_next()<CR>
 " Rust-analyzer shortcuts
 " Code navigation shortcuts
 nnoremap <silent> <c-]>        <cmd>Telescope lsp_definitions<CR>
-nnoremap <silent> K            <cmd>lua vim.lsp.buf.hover()<CR>
+"nnoremap <silent> K            <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> K            <cmd>RustHoverActions<CR>
 nnoremap <silent> gD           <cmd>Telescope lsp_implementations<CR>
 nnoremap <silent> <c-k>        <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> 1gD          <cmd>Telescope lsp_type_definitions<CR>
