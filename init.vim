@@ -364,7 +364,7 @@ nnoremap <leader>tf :NERDTreeFind<CR>
 nnoremap <leader>fo :Telescope find_files<CR>
 nnoremap <leader>fg :Telescope git_files<CR>
 nnoremap <leader>ff :Telescope live_grep<CR>
-nnoremap <C-P>      <cmd>Telescope git_files<CR>
+nnoremap <C-P>      <cmd>Telescope find_files<CR>
 
 " Commentary 
 " maps gc in visual mode to toggle
