@@ -74,6 +74,10 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-context'
 
+" Icons and pane view of errors (trouble)
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'folke/trouble.nvim'
+
 call plug#end()
 
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
@@ -365,6 +369,11 @@ nnoremap <leader>cs <cmd>TermExec cmd="git status" go_back=0<CR>
 nnoremap <leader>gs <cmd>Telescope git_status<CR>
 nnoremap <leader>gb <cmd>Telescope git_branches<CR>
 
+" Trouble (pretty errors) pane
+nnoremap <leader>xx <cmd>TroubleToggle<cr>
+nnoremap <leader>xw <cmd>TroubleToggle workspace_diagnostics<cr>
+nnoremap <leader>xd <cmd>TroubleToggle document_diagnostics<cr>
+
 " Configure tree Sitter
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
@@ -415,3 +424,23 @@ require'treesitter-context'.setup{
     },
 }
 EOF
+
+" Configure the trouble plugin
+lua << EOF
+require("trouble").setup {}
+
+local actions = require("telescope.actions")
+local trouble = require("trouble.providers.telescope")
+
+local telescope = require("telescope")
+
+telescope.setup {
+  defaults = {
+    mappings = {
+      i = { ["<c-t>"] = trouble.open_with_trouble },
+      n = { ["<c-t>"] = trouble.open_with_trouble },
+    },
+  },
+}
+EOF
+
