@@ -165,6 +165,11 @@ set splitright
 noremap Zz <c-w>_ \| <c-w>\|
 noremap Zo <c-w>=
 
+" Make Carlos happy with split pane navigation (without needing C-w first)
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
 
 " Set completeopt to have a better completion experience
 " :help completeopt
@@ -235,6 +240,8 @@ cmp.setup({
     -- Add tab support
     ['<S-Tab>'] = cmp.mapping.select_prev_item(),
     ['<Tab>'] = cmp.mapping.select_next_item(),
+    ['<Down>'] = cmp.mapping.select_next_item(),
+    ['<Up>'] = cmp.mapping.select_prev_item(),
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
