@@ -165,9 +165,11 @@ set smartcase
 " Show matching brackets when text indicator is over them
 set showmatch
 
-" Use <C-L> to clear the highlighting of :set hlsearch.
-if maparg('<C-L>', 'n') ==# ''
-  nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+" Used to clear the highlighting of :set hlsearch.
+"if maparg('<C-L>', 'n') ==# ''
+if maparg('<Enter>', 'n') ==# ''
+  "nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+  nnoremap <silent> <Enter> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><Enter>
 endif
 
 " Treat long lines as break lines (useful when moving around in them)
