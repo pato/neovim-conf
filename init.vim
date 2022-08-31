@@ -86,6 +86,10 @@ Plug 'folke/trouble.nvim'
 " Highlight the word under the cursor
 Plug 'RRethy/vim-illuminate'
 
+" Manage LSPs, debuggers, and linters (use :Mason to install and update them)
+Plug 'williamboman/mason.nvim'    
+Plug 'williamboman/mason-lspconfig.nvim'
+
 call plug#end()
 
 lua require('impatient')
@@ -199,6 +203,11 @@ set completeopt=menuone,noinsert,noselect
 
 " Avoid showing extra messages when using completion
 set shortmess+=c
+
+" Setup mason to manage LSPs, debuggers, and linters
+lua <<EOF
+require("mason").setup()
+EOF
 
 " Configure LSP through rust-tools.nvim plugin.
 " rust-tools will configure and enable certain LSP features for us.
