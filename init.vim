@@ -83,6 +83,9 @@ Plug 'nvim-treesitter/nvim-treesitter-context'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'folke/trouble.nvim'
 
+" Highlight the word under the cursor
+Plug 'RRethy/vim-illuminate'
+
 call plug#end()
 
 lua require('impatient')
