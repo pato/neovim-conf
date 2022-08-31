@@ -3,6 +3,9 @@ call plug#begin()
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
+" Faster load times
+Plug 'lewis6991/impatient.nvim'
+
 " My favorite themes
 Plug 'morhetz/gruvbox'
 Plug 'savq/melange'
@@ -79,6 +82,8 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'folke/trouble.nvim'
 
 call plug#end()
+
+lua require('impatient')
 
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
