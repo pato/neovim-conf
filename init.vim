@@ -72,7 +72,8 @@ Plug 'hood/popui.nvim'
 Plug 'RishabhRD/popfix'
 
 " For automatically closing parans, brackets, quotes, etc...
-Plug 'jiangmiao/auto-pairs'
+" Plug 'jiangmiao/auto-pairs' -- old one
+Plug 'windwp/nvim-autopairs'
 
 " Tree Sitter for AST level parsing of languages
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -464,3 +465,9 @@ telescope.setup {
 }
 EOF
 
+" Enable auto pairs
+lua << EOF
+require("nvim-autopairs").setup({
+  check_ts = true,
+})
+EOF
