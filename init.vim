@@ -87,7 +87,7 @@ Plug 'folke/trouble.nvim'
 Plug 'RRethy/vim-illuminate'
 
 " Manage LSPs, debuggers, and linters (use :Mason to install and update them)
-Plug 'williamboman/mason.nvim'    
+Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 
 call plug#end()
@@ -120,7 +120,7 @@ filetype plugin indent on
 " let g:gruvbox_italic = 1
 " let g:gruvbox_contrast_dark = 'soft'
 " let g:gruvbox_contrast_light = 'soft'
-" colorscheme gruvbox 
+" colorscheme gruvbox
 let g:edge_style = 'aura'
 let g:edge_better_performance = 1
 let g:edge_diagnostic_text_highlight = 1
@@ -128,6 +128,24 @@ let g:edge_diagnostic_virtual_text = 'colored'
 let g:edge_enable_italic = 1
 let g:airline_theme = 'edge'
 colorscheme edge
+
+" Enable light background if it's during the day
+fun! s:set_bg(timer_id)
+  if strftime("%H") >= 10 && strftime("%H") < 20
+    set background=light
+  else
+    set background=dark
+  endif
+endfun
+call timer_start(1000 * 60, function('s:set_bg'), {'repeat': -1})
+call s:set_bg(0)
+
+" Add a function (and command of it) to remove trailing whitespace
+function FixTrailing()
+  :%s/\s\+$//e
+endfunction
+command -bar FixTrailing call FixTrailing()
+
 
 " For finger fumbling (thanks rperce)
 command! W w
@@ -290,7 +308,7 @@ cmp.setup({
 })
 EOF
 
-" Setup toggle-term 
+" Setup toggle-term
 lua <<EOF
 require("toggleterm").setup{
   size = function(term)
@@ -394,7 +412,7 @@ nnoremap <leader>fg :Telescope git_files<CR>
 nnoremap <leader>ff :Telescope live_grep<CR>
 nnoremap <C-P>      <cmd>Telescope find_files<CR>
 
-" Commentary 
+" Commentary
 " maps gc in visual mode to toggle
 
 " Commands
@@ -437,7 +455,7 @@ set foldexpr=nvim_treesitter#foldexpr()
 " Disable folds...
 set nofoldenable
 
-" Open all folds on open 
+" Open all folds on open
 " autocmd BufReadPost,FileReadPost * normal zR
 
 " Configure treesitter context so it shows which file/function i'm in
