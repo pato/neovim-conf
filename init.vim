@@ -10,7 +10,9 @@ Plug 'lewis6991/impatient.nvim'
 Plug 'morhetz/gruvbox'
 Plug 'savq/melange'
 Plug 'shaunsingh/nord.nvim'
+Plug 'andersevenrud/nordic.nvim'
 Plug 'luisiacc/gruvbox-baby', {'branch': 'main'}
+Plug 'sainnhe/gruvbox-material'
 Plug 'sainnhe/edge'
 
 " Collection of common configurations for the Nvim LSP client
@@ -124,24 +126,40 @@ filetype plugin indent on
 " let g:gruvbox_contrast_dark = 'soft'
 " let g:gruvbox_contrast_light = 'soft'
 " colorscheme gruvbox
-let g:edge_style = 'aura'
-let g:edge_better_performance = 1
-let g:edge_diagnostic_text_highlight = 1
-let g:edge_diagnostic_virtual_text = 'colored'
-let g:edge_enable_italic = 1
-let g:airline_theme = 'edge'
-colorscheme edge
+
+" let g:edge_style = 'aura'
+" let g:edge_better_performance = 1
+" let g:edge_diagnostic_text_highlight = 1
+" let g:edge_diagnostic_virtual_text = 'colored'
+" let g:edge_enable_italic = 1
+" let g:airline_theme = 'edge'
+" colorscheme edge
+
+let g:nord_underline_option = 'none'
+let g:nord_italic = v:true
+let g:nord_italic_comments = v:true
+let g:nord_minimal_mode = v:false
+let g:nord_alternate_backgrounds = v:false
+colorscheme nord
+
+" let g:gruvbox_material_background = 'hard'
+" let g:gruvbox_material_better_performance = 1
+" let g:gruvbox_material_diagnostic_text_highlight = 1
+" let g:airline_theme = 'gruvbox_material'
+" let g:gruvbox_material_enable_italic = 1
+" colorscheme gruvbox-material
+" set background=dark
 
 " Enable light background if it's during the day
-fun! s:set_bg(timer_id)
-  if strftime("%H") >= 10 && strftime("%H") < 20
-    set background=light
-  else
-    set background=dark
-  endif
-endfun
-call timer_start(1000 * 60, function('s:set_bg'), {'repeat': -1})
-call s:set_bg(0)
+" fun! s:set_bg(timer_id)
+"   if strftime("%H") >= 9 && strftime("%H") < 20
+"     set background=light
+"   else
+"     set background=dark
+"   endif
+" endfun
+" call timer_start(1000 * 60, function('s:set_bg'), {'repeat': -1})
+" call s:set_bg(0)
 
 " Add a function (and command of it) to remove trailing whitespace
 function FixTrailing()
