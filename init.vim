@@ -90,6 +90,9 @@ Plug 'RRethy/vim-illuminate'
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 
+" Faster movement
+Plug 'ggandor/leap.nvim'
+
 call plug#end()
 
 lua require('impatient')
@@ -503,3 +506,6 @@ require("nvim-autopairs").setup({
   check_ts = true,
 })
 EOF
+
+" Enable leap
+lua require('leap').add_default_mappings()
