@@ -346,6 +346,15 @@ require("toggleterm").setup{
   -- direction = 'vertical' | 'horizontal' | 'window' | 'float',
   persist_size = true,
 }
+
+local Terminal  = require('toggleterm.terminal').Terminal
+local lazygit = Terminal:new({ cmd = "gitui", hidden = true, direction = "float" })
+
+function _git_toggle()
+  lazygit:toggle()
+end
+
+vim.api.nvim_set_keymap("n", "<leader>gg", "<cmd>lua _git_toggle()<CR>", {noremap = true, silent = true})
 EOF
 
 " Set up telescope-ui-select
