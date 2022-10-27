@@ -95,6 +95,9 @@ Plug 'williamboman/mason-lspconfig.nvim'
 " Faster movement
 Plug 'ggandor/leap.nvim'
 
+" Magit (emacs style)
+Plug 'TimUntersberger/neogit'
+
 call plug#end()
 
 lua require('impatient')
@@ -451,6 +454,7 @@ nnoremap <leader>ct <cmd>TermExec cmd="cargo nextest run"<CR>
 nnoremap <leader>cs <cmd>TermExec cmd="git status" go_back=0<CR>
 nnoremap <leader>gs <cmd>Telescope git_status<CR>
 nnoremap <leader>gb <cmd>Telescope git_branches<CR>
+nnoremap <leader>gt <cmd>Neogit kind=vsplit<CR>
 
 " Trouble (pretty errors) pane
 nnoremap <leader>xx <cmd>TroubleToggle<cr>
@@ -536,3 +540,9 @@ EOF
 
 " Enable leap
 lua require('leap').add_default_mappings()
+
+" Enable Magit
+lua << EOF
+local neogit = require('neogit')
+neogit.setup {}
+EOF
