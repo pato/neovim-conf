@@ -97,7 +97,7 @@ Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 
 " Faster movement
-Plug 'ggandor/leap.nvim'
+" Plug 'ggandor/leap.nvim' (disabled, see note further down)
 
 " Magit (emacs style)
 Plug 'TimUntersberger/neogit'
@@ -235,10 +235,10 @@ noremap Zz <c-w>_ \| <c-w>\|
 noremap Zo <c-w>=
 
 " Make Carlos happy with split pane navigation (without needing C-w first)
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
+"nnoremap <C-h> <C-w>h
+"nnoremap <C-l> <C-w>l
+"nnoremap <C-j> <C-w>j
+"nnoremap <C-k> <C-w>k
 
 " Set completeopt to have a better completion experience
 " :help completeopt
@@ -317,6 +317,8 @@ cmp.setup({
   mapping = {
     ['<C-p>'] = cmp.mapping.select_prev_item(),
     ['<C-n>'] = cmp.mapping.select_next_item(),
+    ['<C-k>'] = cmp.mapping.select_prev_item(),
+    ['<C-j>'] = cmp.mapping.select_next_item(),
     -- Add tab support
     ['<S-Tab>'] = cmp.mapping.select_prev_item(),
     ['<Tab>'] = cmp.mapping.select_next_item(),
@@ -548,8 +550,8 @@ require("nvim-autopairs").setup({
 })
 EOF
 
-" Enable leap
-lua require('leap').add_default_mappings()
+" Enable leap (disabled because it conflicts with delete)
+" lua require('leap').add_default_mappings()
 
 " Enable Magit
 lua << EOF
