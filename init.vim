@@ -11,6 +11,7 @@ Plug 'morhetz/gruvbox'
 Plug 'savq/melange'
 Plug 'shaunsingh/nord.nvim'
 Plug 'andersevenrud/nordic.nvim'
+Plug 'EdenEast/nightfox.nvim'
 Plug 'luisiacc/gruvbox-baby', {'branch': 'main'}
 Plug 'sainnhe/gruvbox-material'
 Plug 'sainnhe/edge'
@@ -125,17 +126,17 @@ syntax on
 filetype plugin indent on
 
 " Set my favorite colorscheme
-" let g:gruvbox_italic = 1
-" let g:gruvbox_contrast_dark = 'soft'
-" let g:gruvbox_contrast_light = 'soft'
+let g:gruvbox_italic = 1
+let g:gruvbox_contrast_dark = 'soft'
+let g:gruvbox_contrast_light = 'soft'
 " colorscheme gruvbox
 
-" let g:edge_style = 'aura'
-" let g:edge_better_performance = 1
-" let g:edge_diagnostic_text_highlight = 1
-" let g:edge_diagnostic_virtual_text = 'colored'
-" let g:edge_enable_italic = 1
-" let g:airline_theme = 'edge'
+let g:edge_style = 'aura'
+let g:edge_better_performance = 1
+let g:edge_diagnostic_text_highlight = 1
+let g:edge_diagnostic_virtual_text = 'colored'
+let g:edge_enable_italic = 1
+let g:airline_theme = 'edge'
 " colorscheme edge
 
 let g:nord_underline_option = 'none'
