@@ -59,7 +59,7 @@ Plug 'tpope/vim-surround'
 Plug 'preservim/nerdtree'
 
 " Easymotion for quick movement
-Plug 'Lokaltog/vim-easymotion'
+"Plug 'Lokaltog/vim-easymotion' (disabling since it breaks the lsp and i wasnt using it)
 
 " Toggle-term for more ergonomic terminal experience
 Plug 'akinsho/toggleterm.nvim'
