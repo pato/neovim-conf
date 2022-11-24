@@ -82,6 +82,9 @@ Plug 'windwp/nvim-autopairs'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-context'
 
+" Fancy startscreen
+Plug 'goolord/alpha-nvim'
+
 " Icons and pane view of errors (trouble)
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'folke/trouble.nvim'
@@ -250,6 +253,12 @@ set shortmess+=c
 " Setup mason to manage LSPs, debuggers, and linters
 lua <<EOF
 require("mason").setup()
+EOF
+
+" Setup dashboard
+lua <<EOF
+-- require'alpha'.setup(require'alpha.themes.dashboard'.config)
+require'alpha'.setup(require'alpha.themes.startify'.config)
 EOF
 
 " Configure LSP through rust-tools.nvim plugin.
