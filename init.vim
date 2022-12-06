@@ -102,6 +102,9 @@ Plug 'williamboman/mason-lspconfig.nvim'
 " Magit (emacs style)
 Plug 'TimUntersberger/neogit'
 
+" Diff view and merge tool 
+Plug 'sindrets/diffview.nvim'
+
 call plug#end()
 
 lua require('impatient')
@@ -445,6 +448,11 @@ nnoremap <silent> <space>f     <cmd>lua vim.lsp.buf.formatting()<CR>
 nnoremap <leader>gc 	       <cmd>RustOpenCargo<CR>
 nnoremap <leader>gm 	       <cmd>RustParentModule<CR>
 nnoremap <leader>gr 	       <cmd>RustRunnables<CR>
+
+" Diffview 
+nnoremap <leader>dd 	       <cmd>DiffviewOpen<CR>
+nnoremap <leader>dm 	       <cmd>DiffviewOpen main...<CR>
+nnoremap <leader>dc 	       <cmd>DiffviewClose<CR>
 
 " NERD Tree
 nnoremap <leader>tn :NERDTreeFocus<CR>
