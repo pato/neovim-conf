@@ -105,6 +105,9 @@ Plug 'TimUntersberger/neogit'
 " Diff view and merge tool 
 Plug 'sindrets/diffview.nvim'
 
+" Useful for managing buffers (e.g., closing those not visible `:Bdelete other`)
+Plug 'Asheq/close-buffers.vim'
+
 call plug#end()
 
 lua require('impatient')
