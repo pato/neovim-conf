@@ -55,6 +55,9 @@ Plug 'tpope/vim-fugitive'
 " Allow deleting/adding based on surrounding characters
 Plug 'tpope/vim-surround'
 
+" Allow repeating plugin actions (such as surround actions)
+Plug 'tpope/vim-repeat'
+
 " Filetree plugin
 Plug 'preservim/nerdtree'
 
