@@ -202,7 +202,7 @@ set undofile
 set undolevels=1000
 set undoreload=10000
 
-set autoindent
+set autoindent expandtab tabstop=2 shiftwidth=2
 set backspace=indent,eol,start
 set complete-=i
 set smarttab
