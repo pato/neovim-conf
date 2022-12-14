@@ -445,6 +445,7 @@ nnoremap <silent> gw           <cmd>Telescope lsp_document_symbols<CR>
 nnoremap <silent> gW           <cmd>Telescope lsp_dynamic_workspace_symbols<CR>
 nnoremap <silent> gd           <cmd>Telescope lsp_definitions<CR>
 nnoremap <silent> ga           <cmd>lua vim.lsp.buf.code_action()<CR>
+xnoremap <silent> ga           <cmd>lua vim.lsp.buf.range_code_action()<CR>
 nnoremap <silent> ge           <cmd>Telescope diagnostics<CR>
 nnoremap <silent> <space>rn    <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> <space>f     <cmd>lua vim.lsp.buf.formatting()<CR>
