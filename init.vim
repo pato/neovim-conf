@@ -111,6 +111,9 @@ Plug 'sindrets/diffview.nvim'
 " Useful for managing buffers (e.g., closing those not visible `:Bdelete other`)
 Plug 'Asheq/close-buffers.vim'
 
+" Better diagnostic lines 
+Plug 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
+
 call plug#end()
 
 lua require('impatient')
@@ -576,4 +579,13 @@ EOF
 lua << EOF
 local neogit = require('neogit')
 neogit.setup {}
+EOF
+
+" Enable lsp_lines for better diagnostics
+lua << EOF
+vim.diagnostic.config({
+  virtual_text = false,
+})
+
+require("lsp_lines").setup()
 EOF
