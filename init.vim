@@ -301,6 +301,10 @@ local opts = {
                 checkOnSave = {
                     command = "clippy"
                 },
+                -- rust-analyzer (https://github.com/rust-lang/rust-analyzer/pull/13699) caused a regression in rust-tools, workaround: (https://github.com/simrat39/rust-tools.nvim/issues/300)
+                -- inlayHints = {
+                --   locationLinks = false
+                -- },
 		-- rustfmt = {
 		--     overrideCommand = "cargo +nightly fmt"
 		-- },
