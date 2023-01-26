@@ -105,6 +105,9 @@ Plug 'williamboman/mason-lspconfig.nvim'
 " Magit (emacs style)
 Plug 'TimUntersberger/neogit'
 
+" Gutter Git Status
+Plug 'airblade/vim-gitgutter'
+
 " Diff view and merge tool 
 Plug 'sindrets/diffview.nvim'
 
