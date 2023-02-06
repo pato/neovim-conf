@@ -472,6 +472,7 @@ nnoremap <silent> <space>f     <cmd>lua vim.lsp.buf.formatting()<CR>
 nnoremap <leader>gc 	       <cmd>RustOpenCargo<CR>
 nnoremap <leader>gm 	       <cmd>RustParentModule<CR>
 nnoremap <leader>gr 	       <cmd>RustRunnables<CR>
+nnoremap <leader>gl 	       <cmd>RustLastRun<CR>
 
 " Diffview 
 nnoremap <leader>dd 	       <cmd>DiffviewOpen<CR>
