@@ -117,6 +117,13 @@ Plug 'Asheq/close-buffers.vim'
 " Better diagnostic lines 
 Plug 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
 
+" Purely aesthetic smooth cursor
+Plug 'gen740/SmoothCursor.nvim'
+
+" Purely aesthetic animation for when im bored
+" :CellularAutomaton make_it_rain/game_of_life
+Plug 'eandrju/cellular-automaton.nvim'
+
 call plug#end()
 
 lua require('impatient')
@@ -599,3 +606,13 @@ vim.keymap.set(
 
 require("lsp_lines").setup()
 EOF
+
+" Configure smooth cursor 
+lua << EOF
+require('smoothcursor').setup{
+  fancy = {
+    enable = true
+  }
+}
+EOF
+
