@@ -596,7 +596,7 @@ EOF
 lua << EOF
 vim.diagnostic.config({
   virtual_text = false,
-  -- virtual_lines = { only_current_line = true },
+  virtual_lines = { only_current_line = true },
 })
 vim.keymap.set(
   "",
