@@ -15,6 +15,8 @@ Plug 'EdenEast/nightfox.nvim'
 Plug 'luisiacc/gruvbox-baby', {'branch': 'main'}
 Plug 'sainnhe/gruvbox-material'
 Plug 'sainnhe/edge'
+Plug 'embark-theme/vim', { 'as': 'embark', 'branch': 'main' }
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 
 " Collection of common configurations for the Nvim LSP client
 Plug 'neovim/nvim-lspconfig'
@@ -169,7 +171,28 @@ let g:nord_italic = v:true
 let g:nord_italic_comments = v:true
 let g:nord_minimal_mode = v:false
 let g:nord_alternate_backgrounds = v:false
-colorscheme nord
+" colorscheme nord
+
+
+let g:airline_theme = 'embark'
+" colorscheme embark
+
+let g:airline_theme = 'catppuccin'
+lua <<EOF
+require("catppuccin").setup({
+  integrations = {
+    mason = true,
+    neogit = true,
+    cmp = true,
+    telescope = true,
+    lsp_trouble = true,
+    illuminate = true,
+    treesitter = true,
+    treesitter_context = true,
+  }
+})
+EOF
+colorscheme catppuccin-frappe
 
 " let g:gruvbox_material_background = 'hard'
 " let g:gruvbox_material_better_performance = 1
