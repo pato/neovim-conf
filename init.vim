@@ -183,20 +183,6 @@ let g:airline_theme = 'embark'
 " colorscheme embark
 
 let g:airline_theme = 'catppuccin'
-lua <<EOF
-require("catppuccin").setup({
-  integrations = {
-    mason = true,
-    neogit = true,
-    cmp = true,
-    telescope = true,
-    lsp_trouble = true,
-    illuminate = true,
-    treesitter = true,
-    treesitter_context = true,
-  }
-})
-EOF
 colorscheme catppuccin-frappe
 
 " let g:gruvbox_material_background = 'hard'
@@ -300,150 +286,6 @@ set completeopt=menuone,noinsert,noselect
 " Avoid showing extra messages when using completion
 set shortmess+=c
 
-" Setup mason to manage LSPs, debuggers, and linters
-lua <<EOF
-require("mason").setup()
-EOF
-
-" Setup dashboard
-lua <<EOF
--- require'alpha'.setup(require'alpha.themes.dashboard'.config)
-require'alpha'.setup(require'alpha.themes.startify'.config)
-EOF
-
-" Configure LSP through rust-tools.nvim plugin.
-" rust-tools will configure and enable certain LSP features for us.
-" See https://github.com/simrat39/rust-tools.nvim#configuration
-lua <<EOF
-local nvim_lsp = require'lspconfig'
-
-local opts = {
-    tools = { -- rust-tools options
-        autoSetHints = true,
-        -- hover_with_actions = true,
-        inlay_hints = {
-            show_parameter_hints = false,
-            parameter_hints_prefix = "<-",
-            other_hints_prefix = "=> ",
-        },
-    },
-
-    -- all the opts to send to nvim-lspconfig
-    -- these override the defaults set by rust-tools.nvim
-    -- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
-    server = {
-        -- on_attach is a callback called when the language server attachs to the buffer
-        -- on_attach = on_attach,
-        settings = {
-            -- to enable rust-analyzer settings visit:
-            -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
-            ["rust-analyzer"] = {
-                -- enable clippy on save
-                checkOnSave = {
-                    command = "clippy"
-                },
-                -- rust-analyzer (https://github.com/rust-lang/rust-analyzer/pull/13699) caused a regression in rust-tools, workaround: (https://github.com/simrat39/rust-tools.nvim/issues/300)
-                -- inlayHints = {
-                --   locationLinks = false
-                -- },
-		-- rustfmt = {
-		--     overrideCommand = "cargo +nightly fmt"
-		-- },
-            }
-        }
-    },
-}
-
-require('rust-tools').setup(opts)
-EOF
-
-" Setup Completion
-" See https://github.com/hrsh7th/nvim-cmp#basic-configuration
-lua <<EOF
-local cmp = require'cmp'
-cmp.setup({
-  -- Enable LSP snippets
-  snippet = {
-    expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body)
-    end,
-  },
-  mapping = {
-    ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-n>'] = cmp.mapping.select_next_item(),
-    ['<C-k>'] = cmp.mapping.select_prev_item(),
-    ['<C-j>'] = cmp.mapping.select_next_item(),
-    -- Add tab support
-    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-    ['<Tab>'] = cmp.mapping.select_next_item(),
-    ['<Down>'] = cmp.mapping.select_next_item(),
-    ['<Up>'] = cmp.mapping.select_prev_item(),
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.close(),
-    ['<CR>'] = cmp.mapping.confirm({
-      behavior = cmp.ConfirmBehavior.Insert,
-      select = true,
-    })
-  },
-
-  -- Installed sources
-  sources = {
-    { name = 'nvim_lsp' },
-    { name = 'vsnip' },
-    { name = 'path' },
-    { name = 'buffer' },
-  },
-})
-EOF
-
-" Setup toggle-term
-lua <<EOF
-require("toggleterm").setup{
-  size = function(term)
-    if term.direction == "horizontal" then
-      return 15
-    elseif term.direction == "vertical" then
-      return vim.o.columns * 0.4
-    end
-  end,
-  open_mapping = [[<c-\>]],
-  hide_numbers = true, -- hide the number column in toggleterm buffers
-  shade_terminals = true,
-  start_in_insert = true,
-  -- direction = 'vertical' | 'horizontal' | 'window' | 'float',
-  persist_size = true,
-}
-
-local Terminal  = require('toggleterm.terminal').Terminal
-local lazygit = Terminal:new({ cmd = "gitui", hidden = true, direction = "float" })
-
-function _git_toggle()
-  lazygit:toggle()
-end
-
-vim.api.nvim_set_keymap("n", "<leader>gg", "<cmd>lua _git_toggle()<CR>", {noremap = true, silent = true})
-EOF
-
-" Set up telescope-ui-select
-lua <<EOF
-require("telescope").setup {
-  extensions = {
-    ["ui-select"] = {
-      require("telescope.themes").get_dropdown { }
-    }
-  }
-}
-require("telescope").load_extension("ui-select")
-EOF
-
-" Set up popui.nvim
-lua <<EOF
--- vim.ui.select = require"popui.ui-overrider" -- switched to telescope-ui-select
-vim.ui.input = require"popui.input-overrider"
-EOF
-
 " Super hack but I cannot for the life of me get <C-U> to give vim the correct
 " key code (it always outputs <BS>)
 " So let's map <C-E> to <C-U>
@@ -534,8 +376,165 @@ nnoremap <leader>xx <cmd>TroubleToggle<cr>
 nnoremap <leader>xw <cmd>TroubleToggle workspace_diagnostics<cr>
 nnoremap <leader>xd <cmd>TroubleToggle document_diagnostics<cr>
 
-" Configure tree Sitter
+" Use treesitter for folding
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+
+" Disable folds...
+set nofoldenable
+
+" Git toggle used by lazygit \gg
+function _git_toggle()
+  lazygit:toggle()
+endfunction
+
+" Open all folds on open
+" autocmd BufReadPost,FileReadPost * normal zR
+
 lua <<EOF
+-- <- -- -- -- -- -- LUA TIME -- -- -- -- -- -> --
+
+-- Setup mason to manage LSPs, debuggers, and linters
+require("catppuccin").setup({
+  integrations = {
+    mason = true,
+    neogit = true,
+    cmp = true,
+    telescope = true,
+    lsp_trouble = true,
+    illuminate = true,
+    treesitter = true,
+    treesitter_context = true,
+  }
+})
+
+require("mason").setup()
+
+-- Setup dashboard
+-- require'alpha'.setup(require'alpha.themes.dashboard'.config)
+require'alpha'.setup(require'alpha.themes.startify'.config)
+
+-- Configure LSP through rust-tools.nvim plugin.
+-- rust-tools will configure and enable certain LSP features for us.
+-- See https://github.com/simrat39/rust-tools.nvim#configuration
+local nvim_lsp = require'lspconfig'
+
+local opts = {
+    tools = { -- rust-tools options
+        autoSetHints = true,
+        -- hover_with_actions = true,
+        inlay_hints = {
+            show_parameter_hints = false,
+            parameter_hints_prefix = "<-",
+            other_hints_prefix = "=> ",
+        },
+    },
+
+    -- all the opts to send to nvim-lspconfig
+    -- these override the defaults set by rust-tools.nvim
+    -- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
+    server = {
+        -- on_attach is a callback called when the language server attachs to the buffer
+        -- on_attach = on_attach,
+        settings = {
+            -- to enable rust-analyzer settings visit:
+            -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
+            ["rust-analyzer"] = {
+                -- enable clippy on save
+                checkOnSave = {
+                    command = "clippy"
+                },
+                -- rust-analyzer (https://github.com/rust-lang/rust-analyzer/pull/13699) caused a regression in rust-tools, workaround: (https://github.com/simrat39/rust-tools.nvim/issues/300)
+                -- inlayHints = {
+                --   locationLinks = false
+                -- },
+		-- rustfmt = {
+		--     overrideCommand = "cargo +nightly fmt"
+		-- },
+            }
+        }
+    },
+}
+
+require('rust-tools').setup(opts)
+
+-- Setup Completion
+-- See https://github.com/hrsh7th/nvim-cmp#basic-configuration
+local cmp = require'cmp'
+cmp.setup({
+  -- Enable LSP snippets
+  snippet = {
+    expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body)
+    end,
+  },
+  mapping = {
+    ['<C-p>'] = cmp.mapping.select_prev_item(),
+    ['<C-n>'] = cmp.mapping.select_next_item(),
+    ['<C-k>'] = cmp.mapping.select_prev_item(),
+    ['<C-j>'] = cmp.mapping.select_next_item(),
+    -- Add tab support
+    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+    ['<Tab>'] = cmp.mapping.select_next_item(),
+    ['<Down>'] = cmp.mapping.select_next_item(),
+    ['<Up>'] = cmp.mapping.select_prev_item(),
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.close(),
+    ['<CR>'] = cmp.mapping.confirm({
+      behavior = cmp.ConfirmBehavior.Insert,
+      select = true,
+    })
+  },
+
+  -- Installed sources
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'vsnip' },
+    { name = 'path' },
+    { name = 'buffer' },
+  },
+})
+
+-- Setup toggle-term
+require("toggleterm").setup{
+  size = function(term)
+    if term.direction == "horizontal" then
+      return 15
+    elseif term.direction == "vertical" then
+      return vim.o.columns * 0.4
+    end
+  end,
+  open_mapping = [[<c-\>]],
+  hide_numbers = true, -- hide the number column in toggleterm buffers
+  shade_terminals = true,
+  start_in_insert = true,
+  -- direction = 'vertical' | 'horizontal' | 'window' | 'float',
+  persist_size = true,
+}
+
+local Terminal  = require('toggleterm.terminal').Terminal
+local lazygit = Terminal:new({ cmd = "gitui", hidden = true, direction = "float" })
+
+vim.api.nvim_set_keymap("n", "<leader>gg", "<cmd>lua _git_toggle()<CR>", {noremap = true, silent = true})
+
+-- Set up telescope-ui-select
+require("telescope").setup {
+  extensions = {
+    ["ui-select"] = {
+      require("telescope.themes").get_dropdown { }
+    }
+  }
+}
+require("telescope").load_extension("ui-select")
+
+-- Set up popui.nvim
+-- vim.ui.select = require"popui.ui-overrider-- -- switched to telescope-ui-select
+vim.ui.input = require"popui.input-overrider"
+
+
+-- Configure tree Sitter
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
   ensure_installed = { "rust" },
@@ -553,20 +552,8 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
 }
-EOF
 
-" Use treesitter for folding
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
-
-" Disable folds...
-set nofoldenable
-
-" Open all folds on open
-" autocmd BufReadPost,FileReadPost * normal zR
-
-" Configure treesitter context so it shows which file/function i'm in
-lua <<EOF
+-- Configure treesitter context so it shows which file/function i'm in
 require'treesitter-context'.setup{
     enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
     max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
@@ -583,10 +570,8 @@ require'treesitter-context'.setup{
         },
     },
 }
-EOF
 
-" Configure the trouble plugin
-lua << EOF
+-- Configure the trouble plugin
 require("trouble").setup {}
 
 local actions = require("telescope.actions")
@@ -602,26 +587,20 @@ telescope.setup {
     },
   },
 }
-EOF
 
-" Enable auto pairs
-lua << EOF
+-- Enable auto pairs
 require("nvim-autopairs").setup({
   check_ts = true,
 })
-EOF
 
-" Enable leap (disabled because it conflicts with delete)
-" lua require('leap').add_default_mappings()
+-- Enable leap (disabled because it conflicts with delete)
+-- lua require('leap').add_default_mappings()
 
-" Enable Magit
-lua << EOF
+-- Enable Magit
 local neogit = require('neogit')
 neogit.setup {}
-EOF
 
-" Enable lsp_lines for better diagnostics
-lua << EOF
+-- Enable lsp_lines for better diagnostics
 vim.diagnostic.config({
   virtual_text = false,
   virtual_lines = { only_current_line = true },
@@ -634,19 +613,14 @@ vim.keymap.set(
 )
 
 require("lsp_lines").setup()
-EOF
 
-" Configure smooth cursor
-lua << EOF
+-- Configure smooth cursor
 require('smoothcursor').setup{
   fancy = {
     enable = true
   }
 }
-EOF
 
-" Configure which-key, enable the spelling integration
-lua << EOF
 vim.o.timeout = true
 vim.o.timeoutlen = 300
 require("which-key").setup {
