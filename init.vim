@@ -126,6 +126,11 @@ Plug 'gen740/SmoothCursor.nvim'
 " :CellularAutomaton make_it_rain/game_of_life
 Plug 'eandrju/cellular-automaton.nvim'
 
+" For remembering my key binds
+" See marks with ` or '
+" See registers with "
+Plug 'folke/which-key.nvim'
+
 call plug#end()
 
 lua require('impatient')
@@ -640,3 +645,16 @@ require('smoothcursor').setup{
 }
 EOF
 
+" Configure which-key, enable the spelling integration
+lua << EOF
+vim.o.timeout = true
+vim.o.timeoutlen = 300
+require("which-key").setup {
+  plugins = {
+    spelling = {
+      enabled = true,
+      suggestions = 20,
+    }
+  }
+}
+EOF
