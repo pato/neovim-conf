@@ -110,13 +110,13 @@ Plug 'TimUntersberger/neogit'
 " Gutter Git Status
 Plug 'airblade/vim-gitgutter'
 
-" Diff view and merge tool 
+" Diff view and merge tool
 Plug 'sindrets/diffview.nvim'
 
 " Useful for managing buffers (e.g., closing those not visible `:Bdelete other`)
 Plug 'Asheq/close-buffers.vim'
 
-" Better diagnostic lines 
+" Better diagnostic lines
 Plug 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
 
 " Purely aesthetic smooth cursor
@@ -502,7 +502,7 @@ nnoremap <leader>gm 	       <cmd>RustParentModule<CR>
 nnoremap <leader>gr 	       <cmd>RustRunnables<CR>
 nnoremap <leader>gl 	       <cmd>RustLastRun<CR>
 
-" Diffview 
+" Diffview
 nnoremap <leader>dd 	       <cmd>DiffviewOpen<CR>
 nnoremap <leader>dm 	       <cmd>DiffviewOpen main...<CR>
 nnoremap <leader>dc 	       <cmd>DiffviewClose<CR>
@@ -636,7 +636,7 @@ vim.keymap.set(
 require("lsp_lines").setup()
 EOF
 
-" Configure smooth cursor 
+" Configure smooth cursor
 lua << EOF
 require('smoothcursor').setup{
   fancy = {
