@@ -411,11 +411,6 @@ set foldexpr=nvim_treesitter#foldexpr()
 " Disable folds...
 set nofoldenable
 
-" Git toggle used by lazygit \gg
-function _git_toggle()
-  lazygit:toggle()
-endfunction
-
 " Open all folds on open
 " autocmd BufReadPost,FileReadPost * normal zR
 
@@ -543,9 +538,6 @@ require("toggleterm").setup{
 }
 
 local Terminal  = require('toggleterm.terminal').Terminal
-local lazygit = Terminal:new({ cmd = "gitui", hidden = true, direction = "float" })
-
-vim.api.nvim_set_keymap("n", "<leader>gg", "<cmd>lua _git_toggle()<CR>", {noremap = true, silent = true})
 
 -- Set up telescope-ui-select
 require("telescope").setup {
