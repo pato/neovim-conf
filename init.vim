@@ -327,7 +327,7 @@ nnoremap <silent> g] <cmd>lua vim.diagnostic.goto_next()<CR>
 
 " Rust-analyzer shortcuts
 " Code navigation shortcuts
-nnoremap <silent> <c-]>        <cmd>Telescope lsp_definitions<CR>
+"nnoremap <silent> <c-]>        <cmd>Telescope lsp_definitions<CR>
 "nnoremap <silent> K            <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> K            <cmd>RustHoverActions<CR>
 nnoremap <silent> gi           <cmd>Telescope lsp_implementations<CR>
