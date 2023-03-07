@@ -46,7 +46,6 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 
 " Status lines
-"Plug 'vim-airline/vim-airline'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'arkav/lualine-lsp-progress'
 
@@ -293,11 +292,6 @@ set shortmess+=c
 " key code (it always outputs <BS>)
 " So let's map <C-E> to <C-U>
 nnoremap <C-E> <C-U>
-
-" Display lsp status in airline
-let g:airline#extensions#nvimlsp#enabled = 1
-let g:airline#extensions#nvimlsp#error_symbol = 'E'
-let g:airline#extensions#nvimlsp#warning_symbol = 'W'
 
 " Sets the cursor to a vertical line for insert mode, underline for replace mode, and block for normal mode
 let &t_SI = "\<Esc>[6 q"
