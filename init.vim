@@ -383,6 +383,15 @@ nnoremap <leader>gs <cmd>Telescope git_status<CR>
 nnoremap <leader>gb <cmd>Telescope git_branches<CR>
 nnoremap <leader>gt <cmd>Neogit kind=vsplit<CR>
 
+" GitGutter and git hunk operations 
+"
+nnoremap <space>vs <cmd>GitGutterStageHunk<cr>
+nnoremap <space>vu <cmd>GitGutterUndoHunk<cr>
+nnoremap <space>vn <cmd>GitGutterNextHunk<cr>
+nnoremap <space>vp <cmd>GitGutterPrevHunk<cr>
+nnoremap <space>vv <cmd>GitGutterPreviewHunk<cr>
+nnoremap <space>vf <cmd>GitGutterFold<cr>
+
 " Trouble (pretty errors) pane
 nnoremap <leader>xx <cmd>TroubleToggle<cr>
 nnoremap <leader>xw <cmd>TroubleToggle workspace_diagnostics<cr>
