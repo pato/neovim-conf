@@ -40,10 +40,8 @@ Plug 'simrat39/rust-tools.nvim'
 " Snippet engine
 Plug 'hrsh7th/vim-vsnip'
 
-" Fuzzy finder
-" Optional
+" For replacing vim's select ui
 Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
 
 " Status lines
 Plug 'nvim-lualine/lualine.nvim'
@@ -52,7 +50,7 @@ Plug 'arkav/lualine-lsp-progress'
 " Toggle comments for all languages
 Plug 'tpope/vim-commentary'
 
-" Provide git tools
+" Provide git tools (such as :Git, :Git blame)
 Plug 'tpope/vim-fugitive'
 
 " Allow deleting/adding based on surrounding characters
@@ -108,7 +106,7 @@ Plug 'williamboman/mason-lspconfig.nvim'
 " Magit (emacs style)
 Plug 'TimUntersberger/neogit'
 
-" Gutter Git Status
+" Gutter Git Status (also used for undoing/staging/diffing hunks)
 Plug 'airblade/vim-gitgutter'
 
 " Diff view and merge tool
