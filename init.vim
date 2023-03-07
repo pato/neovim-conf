@@ -249,6 +249,7 @@ set incsearch
 " Highlight search results
 set hlsearch
 " When searching try to be smart about cases
+set ignorecase 
 set smartcase
 " Show matching brackets when text indicator is over them
 set showmatch
