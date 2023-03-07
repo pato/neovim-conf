@@ -399,6 +399,11 @@ nnoremap <leader>xd <cmd>TroubleToggle document_diagnostics<cr>
 nnoremap <leader>xq <cmd>TroubleToggle quickfix<cr>
 nnoremap <leader>xl <cmd>TroubleToggle loclist<cr>
 
+" Termainal mode mappings
+"
+" Map Esc to bring us back to normal mode when in terminal
+tnoremap <Esc> <C-\><C-n>
+
 " Use treesitter for folding
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
