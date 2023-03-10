@@ -130,6 +130,10 @@ Plug 'eandrju/cellular-automaton.nvim'
 " See registers with "
 Plug 'folke/which-key.nvim'
 
+" CodeGPT to add ChatGPT ! (you'll need to set your OPENAI_API_KEY environment variable)
+Plug 'MunifTanjim/nui.nvim'
+Plug 'dpayne/CodeGPT.nvim'
+
 call plug#end()
 
 lua require('impatient')
