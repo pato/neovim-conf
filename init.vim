@@ -616,19 +616,20 @@ require("nvim-autopairs").setup({
 local neogit = require('neogit')
 neogit.setup {}
 
+-- Disabling this becuase virtual text support isn't that great yet. Try again later.
 -- Enable lsp_lines for better diagnostics
-vim.diagnostic.config({
-  virtual_text = false,
-  virtual_lines = { only_current_line = true },
-})
-vim.keymap.set(
-  "",
-  "<Leader>ll",
-  require("lsp_lines").toggle,
-  { desc = "Toggle lsp_lines" }
-)
-
-require("lsp_lines").setup()
+-- vim.diagnostic.config({
+--   virtual_text = false,
+--   virtual_lines = { only_current_line = true },
+-- })
+-- vim.keymap.set(
+--   "",
+--   "<Leader>ll",
+--   require("lsp_lines").toggle,
+--   { desc = "Toggle lsp_lines" }
+-- )
+-- 
+-- require("lsp_lines").setup()
 
 -- Configure smooth cursor
 require('smoothcursor').setup{
