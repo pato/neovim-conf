@@ -311,7 +311,8 @@ set updatetime=300
 set signcolumn=yes
 
 " Auto FMT after save
-autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 2000)
+" autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 2000) DEPRECATED
+autocmd BufWritePre *.rs lua vim.lsp.buf.format({async=true})
 
 " Close NERDTree after opening a file
 let NERDTreeQuitOnOpen=1
