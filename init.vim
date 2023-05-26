@@ -35,7 +35,8 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-buffer'
 
 " To enable more of the features of rust-analyzer, such as inlay hints and more!
-Plug 'simrat39/rust-tools.nvim'
+" Plug 'simrat39/rust-tools.nvim' -- has some outstanding bugs (last commit: 71d2cf6)
+Plug 'Ciel-MC/rust-tools.nvim'
 
 " Snippet engine
 Plug 'hrsh7th/vim-vsnip'
