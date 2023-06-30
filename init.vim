@@ -189,6 +189,12 @@ let g:airline_theme = 'embark'
 let g:airline_theme = 'catppuccin'
 colorscheme catppuccin-frappe
 
+if strftime("%H") >= 8 && strftime("%H") < 20
+  set background=light
+else
+  set background=dark
+endif
+
 " let g:gruvbox_material_background = 'hard'
 " let g:gruvbox_material_better_performance = 1
 " let g:gruvbox_material_diagnostic_text_highlight = 1
