@@ -254,6 +254,8 @@ set wildmenu
 
 " Incrementally display search results
 set incsearch
+" Incrementally display search and replace results
+set inccommand=nosplit
 " Highlight search results
 set hlsearch
 " When searching try to be smart about cases
