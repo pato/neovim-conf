@@ -105,7 +105,7 @@ Plug 'williamboman/mason-lspconfig.nvim'
 " Plug 'ggandor/leap.nvim' (disabled, see note further down)
 
 " Magit (emacs style)
-Plug 'TimUntersberger/neogit'
+Plug 'NeogitOrg/neogit'
 
 " Gutter Git Status (also used for undoing/staging/diffing hunks)
 Plug 'airblade/vim-gitgutter'
