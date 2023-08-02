@@ -91,6 +91,9 @@ Plug 'nvim-treesitter/nvim-treesitter-context'
 " Fancy startscreen
 Plug 'goolord/alpha-nvim'
 
+" Screenscaver
+Plug 'tamton-aquib/zone.nvim'
+
 " Icons and pane view of errors (trouble)
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'folke/trouble.nvim'
@@ -824,4 +827,4 @@ require('lualine').setup {
     lualine_x = {},
   },
 }
---require('lualine').setup()
+EOF
