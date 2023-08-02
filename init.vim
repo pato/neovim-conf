@@ -17,6 +17,7 @@ Plug 'sainnhe/gruvbox-material'
 Plug 'sainnhe/edge'
 Plug 'embark-theme/vim', { 'as': 'embark', 'branch': 'main' }
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+Plug 'projekt0n/github-nvim-theme'
 
 " Collection of common configurations for the Nvim LSP client
 Plug 'neovim/nvim-lspconfig'
