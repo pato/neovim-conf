@@ -827,4 +827,14 @@ require('lualine').setup {
     lualine_x = {},
   },
 }
+
+require('zone').setup {
+    style = "epilepsy",
+    after = 30,
+    exclude_filetypes = { "TelescopePrompt", "NvimTree", "neo-tree", "dashboard", "lazy" },
+    epilepsy = {
+        stage = "aura",
+        tick_time = 100,
+    },
+}
 EOF
