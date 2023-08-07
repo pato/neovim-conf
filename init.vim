@@ -699,25 +699,39 @@ vim.g["codegpt_commands"] = {
 },
 }
 
-
 -- Enable the status line
 local colors = {
   red = '#ca1243',
   grey = '#314549',
   black = '#383a42',
-  white = '#f3f3f3',
+  -- white = '#f3f3f3',
+  white = '#FFFFF7',
   other = '#263238',
   light_green = '#83a598',
   orange = '#fe8019',
   green = '#8ec07c',
+  off_white = '#E6E6DF',
+  off_white_more = '#D9D9D3',
 }
 
-local theme = {
+local theme_dark = {
   normal = {
     a = { fg = colors.white, bg = colors.black },
     b = { fg = colors.white, bg = colors.grey },
     c = { fg = colors.white, bg = colors.other},
     z = { fg = colors.white, bg = colors.black },
+  },
+  insert = { a = { fg = colors.black, bg = colors.light_green } },
+  visual = { a = { fg = colors.black, bg = colors.orange } },
+  replace = { a = { fg = colors.black, bg = colors.green } },
+}
+
+local theme = {
+  normal = {
+    a = { fg = colors.black, bg = colors.off_white},
+    b = { fg = colors.black, bg = colors.off_white},
+    c = { fg = colors.black, bg = colors.off_white},
+    z = { fg = colors.black, bg = colors.off_white},
   },
   insert = { a = { fg = colors.black, bg = colors.light_green } },
   visual = { a = { fg = colors.black, bg = colors.orange } },
@@ -738,7 +752,7 @@ local function process_sections(sections)
   for name, section in pairs(sections) do
     local left = name:sub(9, 10) < 'x'
     for pos = 1, name ~= 'lualine_z' and #section or #section - 1 do
-      table.insert(section, pos * 2, { empty, color = { fg = colors.white, bg = colors.other } })
+      table.insert(section, pos * 2, { empty, color = { fg = colors.black, bg = colors.off_white_more } })
     end
     for id, comp in ipairs(section) do
       if type(comp) ~= 'table' then
