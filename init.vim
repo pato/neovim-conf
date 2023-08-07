@@ -773,7 +773,7 @@ end
 
 require('lualine').setup {
   options = {
-    theme = theme,
+    theme = auto,
     component_separators = '',
     section_separators = { left = '', right = '' },
   },
