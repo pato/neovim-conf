@@ -853,6 +853,7 @@ require('nvim-treesitter.configs').setup {
         ["af"] = "@function.outer",
         ["if"] = "@function.inner",
         ["ac"] = "@class.outer",
+        ["aa"] = "@parameter.inner",
       },
       -- You can choose the select mode (default is charwise 'v')
       --
