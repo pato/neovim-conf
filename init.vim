@@ -92,9 +92,6 @@ Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 " Fancy startscreen
 Plug 'goolord/alpha-nvim'
 
-" Screenscaver
-Plug 'tamton-aquib/zone.nvim'
-
 " Icons and pane view of errors (trouble)
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'folke/trouble.nvim'
@@ -841,16 +838,6 @@ require('lualine').setup {
     lualine_c = { '%f %y %m' },
     lualine_x = {},
   },
-}
-
-require('zone').setup {
-    style = "epilepsy",
-    after = 30,
-    exclude_filetypes = { "TelescopePrompt", "NvimTree", "neo-tree", "dashboard", "lazy" },
-    epilepsy = {
-        stage = "aura",
-        tick_time = 100,
-    },
 }
 
 require('nvim-treesitter.configs').setup {
