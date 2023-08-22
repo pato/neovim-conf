@@ -366,6 +366,7 @@ nnoremap <leader>rl 	       <cmd>Telescope resume<CR>
 
 " Telescope-only bindings
 nnoremap <leader>gl 	       <cmd>Telescope resume<CR>
+nnoremap <leader>gc 	       <cmd>Telescope colorscheme<CR>
 
 " Diffview
 nnoremap <leader>dd 	       <cmd>DiffviewOpen<CR>
@@ -922,6 +923,15 @@ require('nvim-treesitter.configs').setup {
   },
 }
 
+require "telescope".setup {
+  pickers = {
+    colorscheme = {
+      enable_preview = true
+    }
+  }
+}
+
 -- Confiure the colorscheme after all the setups have been done
 vim.cmd[[colorscheme edge]]
+
 EOF
