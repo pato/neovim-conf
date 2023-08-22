@@ -191,7 +191,8 @@ let g:airline_theme = 'embark'
 " colorscheme embark
 
 let g:airline_theme = 'catppuccin'
-colorscheme catppuccin-frappe
+"colorscheme catppuccin-frappe
+
 
 if strftime("%H") >= 8 && strftime("%H") < 20
   set background=light
@@ -921,4 +922,6 @@ require('nvim-treesitter.configs').setup {
   },
 }
 
+-- Confiure the colorscheme after all the setups have been done
+vim.cmd[[colorscheme edge]]
 EOF
