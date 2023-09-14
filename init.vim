@@ -93,6 +93,8 @@ Plug 'windwp/nvim-autopairs'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-context'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+" Enables '.', ',', and ';' text objects
+Plug 'RRethy/nvim-treesitter-textsubjects'
 
 " Fancy startscreen
 Plug 'goolord/alpha-nvim'
@@ -933,6 +935,18 @@ require "telescope".setup {
       enable_preview = true
     }
   }
+}
+
+require('nvim-treesitter.configs').setup {
+    textsubjects = {
+        enable = true,
+        prev_selection = ',', -- (Optional) keymap to select the previous selection
+        keymaps = {
+            ['.'] = 'textsubjects-smart',
+            [';'] = 'textsubjects-container-outer',
+            ['i;'] = 'textsubjects-container-inner',
+        },
+    },
 }
 
 -- Confiure the colorscheme after all the setups have been done
