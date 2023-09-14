@@ -21,6 +21,9 @@ Plug 'projekt0n/github-nvim-theme'
 Plug 'folke/tokyonight.nvim'
 Plug 'Verf/deepwhite.nvim'
 
+" Automatically set theme based on system dark mode
+Plug 'f-person/auto-dark-mode.nvim'
+
 " Collection of common configurations for the Nvim LSP client
 Plug 'neovim/nvim-lspconfig'
 
@@ -949,7 +952,19 @@ require('nvim-treesitter.configs').setup {
     },
 }
 
--- Confiure the colorscheme after all the setups have been done
-vim.cmd[[colorscheme edge]]
+-- Configure the colorscheme based on the system appearance mode
+local auto_dark_mode = require('auto-dark-mode')
+
+auto_dark_mode.setup({
+	update_interval = 1000,
+	set_dark_mode = function()
+		vim.api.nvim_set_option('background', 'dark')
+		vim.cmd('colorscheme edge')
+	end,
+	set_light_mode = function()
+		vim.api.nvim_set_option('background', 'light')
+		vim.cmd('colorscheme edge')
+	end,
+})
 
 EOF
