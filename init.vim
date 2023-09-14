@@ -371,7 +371,7 @@ nnoremap <leader>rl 	       <cmd>Telescope resume<CR>
 
 " Telescope-only bindings
 nnoremap <leader>gl 	       <cmd>Telescope resume<CR>
-nnoremap <leader>gc 	       <cmd>Telescope colorscheme<CR>
+nnoremap <leader>ggc 	       <cmd>Telescope colorscheme<CR>
 
 " Diffview
 nnoremap <leader>dd 	       <cmd>DiffviewOpen<CR>
