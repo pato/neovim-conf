@@ -39,7 +39,10 @@ Plug 'hrsh7th/cmp-buffer'
 
 " To enable more of the features of rust-analyzer, such as inlay hints and more!
 " Plug 'simrat39/rust-tools.nvim' -- has some outstanding bugs (last commit: 71d2cf6)
-Plug 'Ciel-MC/rust-tools.nvim'
+"Plug 'Ciel-MC/rust-tools.nvim'
+"Plug 'ryo33/rust-tools.nvim-nightly-' -- changed the default hover actions
+" has fly check, but missing range actions fix
+Plug 'MunifTanjim/rust-tools.nvim'
 
 " Snippet engine
 Plug 'hrsh7th/vim-vsnip'
