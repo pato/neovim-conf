@@ -391,6 +391,7 @@ nnoremap <C-P>      <cmd>Telescope find_files<CR>
 nnoremap <leader>cc <cmd>TermExec cmd="cargo check --all-targets"<CR>
 nnoremap <leader>ct <cmd>TermExec cmd="cargo nextest run"<CR>
 nnoremap <leader>cs <cmd>TermExec cmd="git status" go_back=0<CR>
+nnoremap <leader>cf <cmd>TermExec cmd="cargo +nightly fmt --all"<CR>
 nnoremap <leader>gs <cmd>Telescope git_status<CR>
 nnoremap <leader>gb <cmd>Telescope git_branches<CR>
 nnoremap <leader>gt <cmd>Neogit kind=vsplit<CR>
