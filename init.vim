@@ -458,10 +458,21 @@ require("mason").setup()
 -- require'alpha'.setup(require'alpha.themes.dashboard'.config)
 require'alpha'.setup(require'alpha.themes.startify'.config)
 
+-- Make sure we have required LSP servers 
+require("mason-lspconfig").setup {
+    ensure_installed = { "rust_analyzer", "tailwindcss", "marksman" },
+}
+
+
 -- Configure LSP through rust-tools.nvim plugin.
 -- rust-tools will configure and enable certain LSP features for us.
 -- See https://github.com/simrat39/rust-tools.nvim#configuration
 local nvim_lsp = require'lspconfig'
+nvim_lsp.tailwindcss.setup {
+  filetypes = { "html", "htmldjango", "css" },
+}
+nvim_lsp.marksman.setup { }
+-- nvim_lsp.rust_analyzer.setup {}
 
 local opts = {
     tools = { -- rust-tools options
@@ -495,7 +506,7 @@ local opts = {
 		-- rustfmt = {
 		--     overrideCommand = "cargo +nightly fmt"
 		-- },
-            }
+            },
         }
     },
 }
