@@ -115,6 +115,7 @@ Plug 'williamboman/mason-lspconfig.nvim'
 
 " Faster movement
 " Plug 'ggandor/leap.nvim' (disabled, see note further down)
+Plug 'unblevable/quick-scope'
 
 " Magit (emacs style)
 Plug 'NeogitOrg/neogit'
@@ -146,9 +147,12 @@ Plug 'folke/which-key.nvim'
 " CodeGPT to add ChatGPT ! (you'll need to set your OPENAI_API_KEY environment variable)
 Plug 'MunifTanjim/nui.nvim'
 Plug 'dpayne/CodeGPT.nvim'
-
 call plug#end()
 
+" Trigger a highlight in the appropriate direction when pressing these keys:
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
+" Try to speed up initialization time
 lua require('impatient')
 
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
