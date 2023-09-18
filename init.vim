@@ -463,17 +463,33 @@ require("mason-lspconfig").setup {
     ensure_installed = { "rust_analyzer", "tailwindcss", "marksman" },
 }
 
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+  callback = function(ev)
+    -- Enable completion triggered by <c-x><c-o>
+    vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
--- Configure LSP through rust-tools.nvim plugin.
--- rust-tools will configure and enable certain LSP features for us.
--- See https://github.com/simrat39/rust-tools.nvim#configuration
+    -- Buffer local mappings.
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
+    local opts = { buffer = ev.buf }
+    vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
+    vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
+    vim.keymap.set('n', '<space>wl', function()
+      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    end, opts)
+  end,
+})
+
+-- Configure LSP servers
 local nvim_lsp = require'lspconfig'
 nvim_lsp.tailwindcss.setup {
   filetypes = { "html", "htmldjango", "css" },
 }
 nvim_lsp.marksman.setup { }
--- nvim_lsp.rust_analyzer.setup {}
 
+-- Configure LSP through rust-tools.nvim plugin.
+-- rust-tools will configure and enable certain LSP features for us.
+-- See https://github.com/simrat39/rust-tools.nvim#configuration
 local opts = {
     tools = { -- rust-tools options
         autoSetHints = true,
