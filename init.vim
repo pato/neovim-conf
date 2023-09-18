@@ -72,9 +72,6 @@ Plug 'tpope/vim-repeat'
 " Filetree plugin
 Plug 'preservim/nerdtree'
 
-" Easymotion for quick movement
-"Plug 'Lokaltog/vim-easymotion' (disabling since it breaks the lsp and i wasnt using it)
-
 " Toggle-term for more ergonomic terminal experience
 Plug 'akinsho/toggleterm.nvim'
 
@@ -114,7 +111,6 @@ Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 
 " Faster movement
-" Plug 'ggandor/leap.nvim' (disabled, see note further down)
 Plug 'unblevable/quick-scope'
 
 " Magit (emacs style)
@@ -128,9 +124,6 @@ Plug 'sindrets/diffview.nvim'
 
 " Useful for managing buffers (e.g., closing those not visible `:Bdelete other`)
 Plug 'Asheq/close-buffers.vim'
-
-" Better diagnostic lines
-Plug 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
 
 " Purely aesthetic smooth cursor
 Plug 'gen740/SmoothCursor.nvim'
@@ -197,39 +190,6 @@ let g:nord_italic_comments = v:true
 let g:nord_minimal_mode = v:false
 let g:nord_alternate_backgrounds = v:false
 " colorscheme nord
-
-
-let g:airline_theme = 'embark'
-" colorscheme embark
-
-let g:airline_theme = 'catppuccin'
-"colorscheme catppuccin-frappe
-
-
-if strftime("%H") >= 8 && strftime("%H") < 20
-  set background=light
-else
-  set background=dark
-endif
-
-" let g:gruvbox_material_background = 'hard'
-" let g:gruvbox_material_better_performance = 1
-" let g:gruvbox_material_diagnostic_text_highlight = 1
-" let g:airline_theme = 'gruvbox_material'
-" let g:gruvbox_material_enable_italic = 1
-" colorscheme gruvbox-material
-" set background=dark
-
-" Enable light background if it's during the day
-" fun! s:set_bg(timer_id)
-"   if strftime("%H") >= 9 && strftime("%H") < 20
-"     set background=light
-"   else
-"     set background=dark
-"   endif
-" endfun
-" call timer_start(1000 * 60, function('s:set_bg'), {'repeat': -1})
-" call s:set_bg(0)
 
 " Add a function (and command of it) to remove trailing whitespace
 function FixTrailing()
@@ -426,7 +386,6 @@ nnoremap <leader>xq <cmd>TroubleToggle quickfix<cr>
 nnoremap <leader>xl <cmd>TroubleToggle loclist<cr>
 
 " Termainal mode mappings
-"
 " Map Esc to bring us back to normal mode when in terminal
 tnoremap <Esc> <C-\><C-n>
 
@@ -460,7 +419,6 @@ require("catppuccin").setup({
 require("mason").setup()
 
 -- Setup dashboard
--- require'alpha'.setup(require'alpha.themes.dashboard'.config)
 require'alpha'.setup(require'alpha.themes.startify'.config)
 
 -- Make sure we have required LSP servers 
@@ -506,29 +464,16 @@ local opts = {
         },
     },
 
-    -- all the opts to send to nvim-lspconfig
-    -- these override the defaults set by rust-tools.nvim
     -- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
     server = {
         -- disable standalone file support (to hopefully speed up startup time)
         standalone = false,
-        -- on_attach is a callback called when the language server attachs to the buffer
-        -- on_attach = on_attach,
         settings = {
-            -- to enable rust-analyzer settings visit:
             -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
             ["rust-analyzer"] = {
-                -- enable clippy on save
                 checkOnSave = {
                     command = "clippy"
                 },
-                -- rust-analyzer (https://github.com/rust-lang/rust-analyzer/pull/13699) caused a regression in rust-tools, workaround: (https://github.com/simrat39/rust-tools.nvim/issues/300)
-                -- inlayHints = {
-                --   locationLinks = false
-                -- },
-		-- rustfmt = {
-		--     overrideCommand = "cargo +nightly fmt"
-		-- },
             },
         }
     },
@@ -685,21 +630,6 @@ require("nvim-autopairs").setup({
 -- Enable Magit
 local neogit = require('neogit')
 neogit.setup {}
-
--- Disabling this becuase virtual text support isn't that great yet. Try again later.
--- Enable lsp_lines for better diagnostics
--- vim.diagnostic.config({
---   virtual_text = false,
---   virtual_lines = { only_current_line = true },
--- })
--- vim.keymap.set(
---   "",
---   "<Leader>ll",
---   require("lsp_lines").toggle,
---   { desc = "Toggle lsp_lines" }
--- )
--- 
--- require("lsp_lines").setup()
 
 -- Configure smooth cursor
 require('smoothcursor').setup{
