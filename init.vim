@@ -107,6 +107,9 @@ Plug 'goolord/alpha-nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'folke/trouble.nvim'
 
+" Display TODOs in the code
+Plug 'folke/todo-comments.nvim'
+
 " Highlight the word under the cursor
 Plug 'RRethy/vim-illuminate'
 
@@ -329,6 +332,7 @@ nnoremap <silent> gD           <cmd>RustOpenExternalDocs<CR>
 nnoremap <silent> ga           <cmd>lua vim.lsp.buf.code_action()<CR>
 xnoremap <silent> ga           <cmd>lua vim.lsp.buf.range_code_action()<CR>
 nnoremap <silent> ge           <cmd>Telescope diagnostics<CR>
+nnoremap <silent> gt           <cmd>TodoTelescope<CR>
 nnoremap <silent> <space>rn    <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> <space>f     <cmd>lua vim.lsp.buf.formatting()<CR>
 
@@ -388,6 +392,7 @@ nnoremap <leader>xw <cmd>TroubleToggle workspace_diagnostics<cr>
 nnoremap <leader>xd <cmd>TroubleToggle document_diagnostics<cr>
 nnoremap <leader>xq <cmd>TroubleToggle quickfix<cr>
 nnoremap <leader>xl <cmd>TroubleToggle loclist<cr>
+nnoremap <leader>xt <cmd>TodoTrouble<cr>
 
 " Termainal mode mappings
 " Map Esc to bring us back to normal mode when in terminal
@@ -942,11 +947,12 @@ require("ibl").setup({
     tab_char = "│",
   },
 })
-
 require('mini.indentscope').setup({
   symbol = "│",
   options = { try_as_border = true },
 })
 
+-- Configure TODO
+require('todo-comments').setup({})
 
 EOF
