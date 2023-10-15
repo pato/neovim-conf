@@ -85,6 +85,10 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'hood/popui.nvim'
 Plug 'RishabhRD/popfix'
 
+" Better indent lines
+Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'echasnovski/mini.indentscope', { 'branch': 'stable' }
+
 " For automatically closing parans, brackets, quotes, etc...
 " Plug 'jiangmiao/auto-pairs' -- old one
 Plug 'windwp/nvim-autopairs'
@@ -930,5 +934,19 @@ auto_dark_mode.setup({
 		vim.cmd('colorscheme edge')
 	end,
 })
+
+-- Configure indent lines
+require("ibl").setup({
+  indent = {
+    char = "│",
+    tab_char = "│",
+  },
+})
+
+require('mini.indentscope').setup({
+  symbol = "│",
+  options = { try_as_border = true },
+})
+
 
 EOF
