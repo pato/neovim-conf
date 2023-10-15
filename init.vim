@@ -55,7 +55,7 @@ Plug 'nvim-lua/popup.nvim'
 
 " Status lines
 Plug 'nvim-lualine/lualine.nvim'
-Plug 'arkav/lualine-lsp-progress'
+"Plug 'arkav/lualine-lsp-progress' " this works, but it breaks noice.nvim which has neat little popups
 
 " Toggle comments for all languages
 Plug 'tpope/vim-commentary'
@@ -147,6 +147,12 @@ Plug 'folke/which-key.nvim'
 " CodeGPT to add ChatGPT ! (you'll need to set your OPENAI_API_KEY environment variable)
 Plug 'MunifTanjim/nui.nvim'
 Plug 'dpayne/CodeGPT.nvim'
+
+" Better UI
+Plug 'MunifTanjim/nui.nvim'
+Plug 'rcarriga/nvim-notify'
+Plug 'stevearc/dressing.nvim'
+Plug 'folke/noice.nvim'
 call plug#end()
 
 " Trigger a highlight in the appropriate direction when pressing these keys:
@@ -411,6 +417,26 @@ set nofoldenable
 lua <<EOF
 -- <- -- -- -- -- -- LUA TIME -- -- -- -- -- -> --
 
+-- Replace the notify function
+require("notify").setup({
+  timeout = 3000,
+  max_height = function()
+    return math.floor(vim.o.lines * 0.75)
+  end,
+  max_width = function()
+    return math.floor(vim.o.columns * 0.75)
+  end,
+  on_open = function(win)
+    vim.api.nvim_win_set_config(win, { zindex = 100 })
+  end,
+})
+
+-- commenting out for now because noice.nvim does it too
+-- vim.notify = require("notify")
+
+-- Better UI
+require("dressing").setup({})
+
 -- Setup mason to manage LSPs, debuggers, and linters
 require("catppuccin").setup({
   integrations = {
@@ -577,7 +603,7 @@ vim.ui.input = require"popui.input-overrider"
 -- Configure tree Sitter
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
-  ensure_installed = { "rust", "diff", "git_rebase", "gitcommit" },
+  ensure_installed = { "rust", "diff", "git_rebase", "gitcommit", "vim", "regex", "lua", "bash", "markdown", "markdown_inline" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -813,9 +839,9 @@ require('lualine').setup {
         end,
       },
     },
-    lualine_c = {
-      'lsp_progress'
-    },
+    -- lualine_c = {
+    --   'lsp_progress'
+    -- },
     lualine_x = {},
     lualine_y = { search_result, 'filetype' },
     lualine_z = { '%l:%c', '%p%%/%L' },
@@ -946,6 +972,20 @@ require("ibl").setup({
     char = "│",
     tab_char = "│",
   },
+  exclude = {
+    filetypes = {
+      "help",
+      "alpha",
+      "dashboard",
+      "neo-tree",
+      "Trouble",
+      "lazy",
+      "mason",
+      "notify",
+      "toggleterm",
+      "lazyterm",
+    },
+  },
 })
 require('mini.indentscope').setup({
   symbol = "│",
@@ -954,5 +994,27 @@ require('mini.indentscope').setup({
 
 -- Configure TODO
 require('todo-comments').setup({})
+
+-- Configure noice
+require("noice").setup({
+ cmdline = {
+    enabled = true,
+    view = "cmdline",
+  },
+  lsp = {
+    -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+    override = {
+      ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+      ["vim.lsp.util.stylize_markdown"] = true,
+      ["cmp.entry.get_documentation"] = true,
+    },
+  },
+  presets = {
+    bottom_search = true,
+    command_palette = true,
+    long_message_to_split = true,
+    inc_rename = true,
+  },
+})
 
 EOF
