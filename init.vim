@@ -1015,6 +1015,19 @@ require("noice").setup({
     long_message_to_split = true,
     inc_rename = true,
   },
+  routes = {
+    {
+      filter = {
+        event = "msg_show",
+        any = {
+          { find = "%d+L, %d+B" },
+          { find = "; after #%d+" },
+          { find = "; before #%d+" },
+        },
+      },
+      view = "mini",
+    },
+  },
 })
 
 EOF
