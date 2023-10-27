@@ -71,6 +71,7 @@ Plug 'tpope/vim-repeat'
 
 " Filetree plugin
 Plug 'preservim/nerdtree'
+Plug 'nvim-neo-tree/neo-tree.nvim', { 'branch': 'v3.x' }
 
 " Toggle-term for more ergonomic terminal experience
 Plug 'akinsho/toggleterm.nvim'
@@ -361,9 +362,12 @@ nnoremap <leader>dm 	       <cmd>DiffviewOpen main...<CR>
 nnoremap <leader>dc 	       <cmd>DiffviewClose<CR>
 
 " NERD Tree
-nnoremap <leader>tn :NERDTreeFocus<CR>
-nnoremap <leader>tt :NERDTreeToggle<CR>
-nnoremap <leader>tf :NERDTreeFind<CR>
+" nnoremap <leader>tn :NERDTreeFocus<CR>
+" nnoremap <leader>tt :NERDTreeToggle<CR>
+" nnoremap <leader>tf :NERDTreeFind<CR>
+nnoremap <leader>tn :Neotree<CR>
+nnoremap <leader>tt :Neotree toggle<CR>
+nnoremap <leader>tf :Neotree reveal<CR>
 
 " FZF
 nnoremap <leader>fo :Telescope find_files<CR>
