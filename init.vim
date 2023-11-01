@@ -339,6 +339,7 @@ nnoremap <silent> gD           <cmd>RustOpenExternalDocs<CR>
 nnoremap <silent> ga           <cmd>lua vim.lsp.buf.code_action()<CR>
 xnoremap <silent> ga           <cmd>lua vim.lsp.buf.range_code_action()<CR>
 nnoremap <silent> ge           <cmd>Telescope diagnostics<CR>
+nnoremap <silent> gb           <cmd>Telescope buffers<CR>
 nnoremap <silent> gt           <cmd>TodoTelescope<CR>
 nnoremap <silent> <space>rn    <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> <space>f     <cmd>lua vim.lsp.buf.formatting()<CR>
