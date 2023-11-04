@@ -336,6 +336,7 @@ nnoremap <silent> gW           <cmd>Telescope lsp_document_symbols<CR>
 nnoremap <silent> gw           <cmd>Telescope lsp_dynamic_workspace_symbols<CR>
 nnoremap <silent> gd           <cmd>Telescope lsp_definitions<CR>
 nnoremap <silent> gD           <cmd>RustOpenExternalDocs<CR>
+nnoremap <silent> gk           <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> ga           <cmd>lua vim.lsp.buf.code_action()<CR>
 xnoremap <silent> ga           <cmd>lua vim.lsp.buf.range_code_action()<CR>
 nnoremap <silent> ge           <cmd>Telescope diagnostics<CR>
