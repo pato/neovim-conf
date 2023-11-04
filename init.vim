@@ -47,6 +47,9 @@ Plug 'hrsh7th/cmp-buffer'
 " has fly check, but missing range actions fix
 Plug 'MunifTanjim/rust-tools.nvim'
 
+" Handle helm 
+Plug 'towolf/vim-helm'
+
 " Snippet engine
 Plug 'hrsh7th/vim-vsnip'
 
@@ -464,7 +467,7 @@ require'alpha'.setup(require'alpha.themes.startify'.config)
 
 -- Make sure we have required LSP servers 
 require("mason-lspconfig").setup {
-    ensure_installed = { "rust_analyzer", "tailwindcss", "marksman" },
+    ensure_installed = { "rust_analyzer", "tailwindcss", "marksman", "helm_ls" },
 }
 
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -521,6 +524,28 @@ local opts = {
 }
 
 require('rust-tools').setup(opts)
+
+-- Configure helm lsp server
+local configs = require('lspconfig.configs')
+local lspconfig = require('lspconfig')
+local util = require('lspconfig.util')
+
+if not configs.helm_ls then
+  configs.helm_ls = {
+    default_config = {
+      cmd = {"helm_ls", "serve"},
+      filetypes = {'helm'},
+      root_dir = function(fname)
+        return util.root_pattern('Chart.yaml')(fname)
+      end,
+    },
+  }
+end
+
+lspconfig.helm_ls.setup {
+  filetypes = {"helm"},
+  cmd = {"helm_ls", "serve"},
+}
 
 -- Setup Completion
 -- See https://github.com/hrsh7th/nvim-cmp#basic-configuration
