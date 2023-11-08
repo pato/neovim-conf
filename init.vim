@@ -428,7 +428,9 @@ lua <<EOF
 
 -- Replace the notify function
 require("notify").setup({
-  timeout = 3000,
+  timeout = 1000,
+  render = "minimal",
+  stages = "static",
   max_height = function()
     return math.floor(vim.o.lines * 0.75)
   end,
