@@ -700,11 +700,11 @@ local neogit = require('neogit')
 neogit.setup {}
 
 -- Configure smooth cursor
-require('smoothcursor').setup{
-  fancy = {
-    enable = true
-  }
-}
+-- require('smoothcursor').setup{
+--   fancy = {
+--     enable = true
+--   }
+-- }
 
 vim.o.timeout = true
 vim.o.timeoutlen = 300
