@@ -370,9 +370,6 @@ nnoremap <leader>dm 	       <cmd>DiffviewOpen main...<CR>
 nnoremap <leader>dc 	       <cmd>DiffviewClose<CR>
 
 " NERD Tree
-" nnoremap <leader>tn :NERDTreeFocus<CR>
-" nnoremap <leader>tt :NERDTreeToggle<CR>
-" nnoremap <leader>tf :NERDTreeFind<CR>
 nnoremap <leader>tn :Neotree<CR>
 nnoremap <leader>tt :Neotree toggle<CR>
 nnoremap <leader>tf :Neotree reveal<CR>
@@ -707,19 +704,9 @@ require("nvim-autopairs").setup({
   check_ts = true,
 })
 
--- Enable leap (disabled because it conflicts with delete)
--- lua require('leap').add_default_mappings()
-
 -- Enable Magit
 local neogit = require('neogit')
 neogit.setup {}
-
--- Configure smooth cursor
--- require('smoothcursor').setup{
---   fancy = {
---     enable = true
---   }
--- }
 
 vim.o.timeout = true
 vim.o.timeoutlen = 300
