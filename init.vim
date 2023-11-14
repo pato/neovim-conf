@@ -111,6 +111,9 @@ Plug 'goolord/alpha-nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'folke/trouble.nvim'
 
+" Display the completion kind icons
+Plug 'onsails/lspkind.nvim'
+
 " Display TODOs in the code
 Plug 'folke/todo-comments.nvim'
 
@@ -448,7 +451,7 @@ require("notify").setup({
 -- Better UI
 require("dressing").setup({})
 
--- Setup mason to manage LSPs, debuggers, and linters
+-- Configure theme
 require("catppuccin").setup({
   integrations = {
     mason = true,
@@ -551,6 +554,7 @@ lspconfig.helm_ls.setup {
 
 -- Setup Completion
 -- See https://github.com/hrsh7th/nvim-cmp#basic-configuration
+local lspkind = require('lspkind')
 local cmp = require'cmp'
 cmp.setup({
   -- Enable LSP snippets
@@ -578,7 +582,6 @@ cmp.setup({
       select = true,
     })
   },
-
   -- Installed sources
   sources = {
     { name = 'nvim_lsp' },
@@ -597,6 +600,18 @@ cmp.setup({
 			cmp.config.compare.kind,
 		},
 	},
+  -- Display the kind
+  formatting = {
+    format = lspkind.cmp_format({
+      mode = 'symbol_text',
+      maxwidth = 50,
+      ellipsis_char = '...',
+
+      before = function (entry, vim_item)
+        return vim_item
+      end
+    })
+  }
 })
 
 -- Setup toggle-term
