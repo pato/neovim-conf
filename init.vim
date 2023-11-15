@@ -469,7 +469,7 @@ require'alpha'.setup(require'alpha.themes.startify'.config)
 
 -- Make sure we have required LSP servers 
 require("mason-lspconfig").setup {
-    ensure_installed = { "rust_analyzer", "tailwindcss", "marksman", "helm_ls" },
+    ensure_installed = { "rust_analyzer", "tailwindcss", "marksman", "helm_ls", "jedi-language-server" },
 }
 
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -495,6 +495,7 @@ nvim_lsp.tailwindcss.setup {
   filetypes = { "html", "htmldjango", "css" },
 }
 nvim_lsp.marksman.setup { }
+nvim_lsp.jedi_language_server.setup{}
 
 -- Configure LSP through rust-tools.nvim plugin.
 -- rust-tools will configure and enable certain LSP features for us.
