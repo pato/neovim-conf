@@ -438,9 +438,9 @@ opt.tabstop = 2             -- Number of spaces tabs count for
 opt.shiftwidth = 2          -- Size of an indent
 
 opt.undofile = true         -- enable persistent undo
-opt.undodir = "~/.vim/undo" -- put them all in the same place
 opt.undolevels=1000         -- lots of levels
 opt.undoreload=10000        -- save the whole buffer for undo when reloading it
+opt.undodir = vim.fn.stdpath('config') .. '/.undo' -- put them all in the same place
 
 if vim.fn.has("nvim-0.10") == 1 then
   opt.smoothscroll = true
