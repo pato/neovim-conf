@@ -487,7 +487,7 @@ require'alpha'.setup(require'alpha.themes.startify'.config)
 
 -- Make sure we have required LSP servers 
 require("mason-lspconfig").setup {
-    ensure_installed = { "rust_analyzer", "tailwindcss", "marksman", "helm_ls", "jedi-language-server" },
+    ensure_installed = { "rust_analyzer", "tailwindcss", "marksman", "helm_ls", "jedi_language_server" },
 }
 
 -- Enable symbol usage (needs to be before LspAttach)
