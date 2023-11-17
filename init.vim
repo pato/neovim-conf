@@ -107,6 +107,11 @@ Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 " Enables '.', ',', and ';' text objects
 Plug 'RRethy/nvim-treesitter-textsubjects'
 
+" IDE breadcrumbs, seriously awesome and simple
+if has('nvim-0.10')
+  Plug 'Bekaboo/dropbar.nvim'
+end
+
 " Fancy startscreen
 Plug 'goolord/alpha-nvim'
 
