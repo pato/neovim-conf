@@ -84,6 +84,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-ui-select.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug 'smilovanovic/telescope-search-dir-picker.nvim'
 
 " Popui for better select and input (needs popfix)
 Plug 'hood/popui.nvim'
@@ -381,6 +382,7 @@ nnoremap <leader>tf :Neotree reveal<CR>
 nnoremap <leader>fo :Telescope find_files<CR>
 nnoremap <leader>fg :Telescope git_files<CR>
 nnoremap <leader>ff :Telescope live_grep<CR>
+nnoremap <leader>fd :Telescope search_dir_picker<CR>
 nnoremap <C-P>      <cmd>Telescope find_files<CR>
 
 " Commentary
@@ -673,14 +675,16 @@ require("toggleterm").setup{
 local Terminal  = require('toggleterm.terminal').Terminal
 
 -- Set up telescope-ui-select
-require("telescope").setup {
+local tele = require('telescope')
+tele.setup {
   extensions = {
     ["ui-select"] = {
       require("telescope.themes").get_dropdown { }
     }
   }
 }
-require("telescope").load_extension("ui-select")
+tele.load_extension('ui-select')
+tele.load_extension('search_dir_picker')
 
 -- Set up popui.nvim
 -- vim.ui.select = require"popui.ui-overrider-- -- switched to telescope-ui-select
