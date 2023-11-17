@@ -40,12 +40,14 @@ Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-buffer'
 
-" To enable more of the features of rust-analyzer, such as inlay hints and more!
-" Plug 'simrat39/rust-tools.nvim' -- has some outstanding bugs (last commit: 71d2cf6)
-"Plug 'Ciel-MC/rust-tools.nvim'
-"Plug 'ryo33/rust-tools.nvim-nightly-' -- changed the default hover actions
-" has fly check, but missing range actions fix
-Plug 'MunifTanjim/rust-tools.nvim'
+" Rust plugin 
+if has('nvim-0.10')
+  " This is the much better version but requires neovim-0.10
+  Plug 'mrcjkb/rustaceanvim'
+else
+  " The old version which is a better fork of 'simrat39/rust-tools.nvim'
+  Plug 'MunifTanjim/rust-tools.nvim'
+endif
 
 " Handle helm 
 Plug 'towolf/vim-helm'
@@ -335,9 +337,11 @@ nnoremap <silent> g] <cmd>lua vim.diagnostic.goto_next()<CR>
 
 " Rust-analyzer shortcuts
 " Code navigation shortcuts
-"nnoremap <silent> <c-]>        <cmd>Telescope lsp_definitions<CR>
-"nnoremap <silent> K            <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> K            <cmd>RustHoverActions<CR>
+if has('nvim-0.10')
+  nnoremap <silent> K            <cmd>lua vim.lsp.buf.hover()<CR>
+else 
+  nnoremap <silent> K            <cmd>RustHoverActions<CR>
+endif
 nnoremap <silent> gi           <cmd>Telescope lsp_implementations<CR>
 nnoremap <silent> <c-k>        <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> 1gd          <cmd>Telescope lsp_type_definitions<CR>
@@ -345,23 +349,31 @@ nnoremap <silent> gr           <cmd>Telescope lsp_references<CR>
 nnoremap <silent> gW           <cmd>Telescope lsp_document_symbols<CR>
 nnoremap <silent> gw           <cmd>Telescope lsp_dynamic_workspace_symbols<CR>
 nnoremap <silent> gd           <cmd>Telescope lsp_definitions<CR>
-nnoremap <silent> gD           <cmd>RustOpenExternalDocs<CR>
-nnoremap <silent> gk           <cmd>lua vim.lsp.buf.hover()<CR>
+if has('nvim-0.10')
+  nnoremap <silent> gD           <cmd>RustLsp externalDocs<CR>
+else
+  nnoremap <silent> gD           <cmd>RustOpenExternalDocs<CR>
+endif
+xnoremap <silent> ga           <cmd>lua vim.lsp.buf.code_action()<CR>
 nnoremap <silent> ga           <cmd>lua vim.lsp.buf.code_action()<CR>
-xnoremap <silent> ga           <cmd>lua vim.lsp.buf.range_code_action()<CR>
 nnoremap <silent> ge           <cmd>Telescope diagnostics<CR>
 nnoremap <silent> gb           <cmd>Telescope buffers<CR>
 nnoremap <silent> gt           <cmd>TodoTelescope<CR>
 nnoremap <silent> <space>rn    <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> <space>f     <cmd>lua vim.lsp.buf.formatting()<CR>
 
-" Rust go-to
-nnoremap <leader>gc 	       <cmd>RustOpenCargo<CR>
-nnoremap <leader>gm 	       <cmd>RustParentModule<CR>
-
 " Rust actions
-nnoremap <leader>rr 	       <cmd>RustRunnables<CR>
-" Annoremap <leader>rl 	       <cmd>RustLastRun<CR> " this is not working upstream yet
+if has('nvim-0.10')
+  nnoremap <leader>gc 	       <cmd>RustLsp openCargo<CR>
+  nnoremap <leader>gm 	       <cmd>RustLsp parentModule<CR>
+  nnoremap <leader>rr 	       <cmd>RustLsp runnables<CR>
+else
+  nnoremap <leader>gc 	       <cmd>RustOpenCargo<CR>
+  nnoremap <leader>gm 	       <cmd>RustParentModule<CR>
+  nnoremap <leader>rr 	       <cmd>RustRunnables<CR>
+endif
+" nnoremap <leader>rl 	       <cmd>RustLastRun<CR> " this is not working upstream yet
+
 nnoremap <leader>rl 	       <cmd>Telescope resume<CR>
 
 " Telescope-only bindings
@@ -479,6 +491,7 @@ require("catppuccin").setup({
   }
 })
 
+-- Setup mason to manage LSPs, debuggers, and linters
 require("mason").setup()
 
 -- Setup dashboard
@@ -521,6 +534,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- Enable completion triggered by <c-x><c-o>
     vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
+    -- Enable inlay hints on new buffers (if using nvim 0.10)
+    if vim.fn.has("nvim-0.10") == 1 then
+      local client = vim.lsp.get_client_by_id(ev.data.client_id)
+      if client.server_capabilities.inlayHintProvider then
+        vim.g.inlay_hints_visible = true
+        vim.lsp.inlay_hint(ev.buf, true)
+      end
+    end
+
     -- Buffer local mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     local opts = { buffer = ev.buf }
@@ -540,36 +562,39 @@ nvim_lsp.tailwindcss.setup {
 nvim_lsp.marksman.setup { }
 nvim_lsp.jedi_language_server.setup{}
 
--- Configure LSP through rust-tools.nvim plugin.
--- rust-tools will configure and enable certain LSP features for us.
--- See https://github.com/simrat39/rust-tools.nvim#configuration
-local opts = {
-    tools = { -- rust-tools options
-        autoSetHints = true,
-        -- hover_with_actions = true,
-        inlay_hints = {
-            show_parameter_hints = false,
-            parameter_hints_prefix = "<-",
-            other_hints_prefix = "=> ",
-        },
-    },
+if vim.fn.has("nvim-0.10") == 1 then
+  -- If we are in neovim-0.10, we don't actually need to call setup
+else 
+  -- Configure LSP through rust-tools.nvim plugin.
+  -- rust-tools will configure and enable certain LSP features for us.
+  -- See https://github.com/simrat39/rust-tools.nvim#configuration
+  local opts = {
+      tools = { -- rust-tools options
+          autoSetHints = true,
+          -- hover_with_actions = true,
+          inlay_hints = {
+              show_parameter_hints = false,
+              parameter_hints_prefix = "<-",
+              other_hints_prefix = "=> ",
+          },
+      },
 
-    -- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
-    server = {
-        -- disable standalone file support (to hopefully speed up startup time)
-        standalone = false,
-        settings = {
-            -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
-            ["rust-analyzer"] = {
-                checkOnSave = {
-                    command = "clippy"
-                },
-            },
-        }
-    },
-}
-
-require('rust-tools').setup(opts)
+      -- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
+      server = {
+          -- disable standalone file support (to hopefully speed up startup time)
+          standalone = false,
+          settings = {
+              -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
+              ["rust-analyzer"] = {
+                  checkOnSave = {
+                      command = "clippy"
+                  },
+              },
+          }
+      },
+  }
+  require('rust-tools').setup(opts)
+end
 
 -- Configure helm lsp server
 local configs = require('lspconfig.configs')
