@@ -617,8 +617,13 @@ lspconfig.helm_ls.setup {
   cmd = {"helm_ls", "serve"},
 }
 
--- Aligning using `ga` or `gA` (more help: https://github.com/echasnovski/mini.align)
-require('mini.align').setup()
+-- Aligning using `\ga` or `\gA` (more help: https://github.com/echasnovski/mini.align)
+require('mini.align').setup({
+  mappings = {
+    start = '<leader>ga',
+    start_with_preview = '<leader>gA',
+  },
+})
 
 -- Setup Completion
 -- See https://github.com/hrsh7th/nvim-cmp#basic-configuration
