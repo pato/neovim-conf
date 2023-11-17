@@ -231,8 +231,8 @@ set mouse=a
 
 " Enable hybrid line numbers (show absolute for current line and relative
 " otherwise)
-"set number relativenumber
-set number 
+set number relativenumber
+"set number 
 
 " Enable persistent undo
 set undodir=~/.vim/undo
