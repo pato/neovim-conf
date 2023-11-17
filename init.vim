@@ -166,6 +166,9 @@ Plug 'folke/noice.nvim'
 
 " Display usages as virtual text
 Plug 'Wansmer/symbol-usage.nvim'
+
+" Align anything and everything
+Plug 'echasnovski/mini.align'
 call plug#end()
 
 " Trigger a highlight in the appropriate direction when pressing these keys:
@@ -605,6 +608,9 @@ lspconfig.helm_ls.setup {
   filetypes = {"helm"},
   cmd = {"helm_ls", "serve"},
 }
+
+-- Aligning using `ga` or `gA` (more help: https://github.com/echasnovski/mini.align)
+require('mini.align').setup()
 
 -- Setup Completion
 -- See https://github.com/hrsh7th/nvim-cmp#basic-configuration
