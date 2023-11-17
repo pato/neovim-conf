@@ -429,6 +429,18 @@ set nofoldenable
 lua <<EOF
 -- <- -- -- -- -- -- LUA TIME -- -- -- -- -- -> --
 
+local opt = vim.opt
+opt.list = true -- Show some invisible characters (tabs...
+opt.pumblend = 10 -- Popup blend
+opt.pumheight = 10 -- Maximum number of entries in a popup
+opt.shiftround = true -- Round indent
+opt.shiftwidth = 2 -- Size of an indent
+opt.tabstop = 2 -- Number of spaces tabs count for
+
+if vim.fn.has("nvim-0.10") == 1 then
+  opt.smoothscroll = true
+end
+
 -- Replace the notify function
 require("notify").setup({
   timeout = 1000,
