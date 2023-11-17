@@ -406,41 +406,41 @@ lua <<EOF
 
 local opt = vim.opt
 
-opt.confirm = true -- Confirm to save changes before exiting modified buffer
-opt.autowrite = true -- Enable auto write
-opt.mouse = "a" -- Enable mouse mode in all modes
+opt.confirm = true          -- Confirm to save changes before exiting modified buffer
+opt.autowrite = true        -- Enable auto write
+opt.mouse = "a"             -- Enable mouse mode in all modes
 
-opt.number = true -- display line number
-opt.relativenumber = true -- Relative line numbers
-opt.showmatch = true -- Highlight matching parenthesis
+opt.number = true           -- display line number
+opt.relativenumber = true   -- Relative line numbers
+opt.showmatch = true        -- Highlight matching parenthesis
 
-opt.list = true -- Show some invisible characters (tabs...
-opt.cursorline = true -- Enable highlighting of the current line
-opt.pumblend = 10 -- Popup blend
-opt.pumheight = 10 -- Maximum number of entries in a popup
-opt.shiftround = true -- Round indent
-opt.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
-opt.updatetime = 300 -- Save swap file and trigger CursorHold of no cursor movement
+opt.list = true             -- Show some invisible characters (tabs...
+opt.cursorline = true       -- Enable highlighting of the current line
+opt.pumblend = 10           -- Popup blend
+opt.pumheight = 10          -- Maximum number of entries in a popup
+opt.shiftround = true       -- Round indent
+opt.signcolumn = "yes"      -- Always show the signcolumn, otherwise it would shift the text each time
+opt.updatetime = 300        -- Save swap file and trigger CursorHold of no cursor movement
 
-opt.splitbelow = true -- Put new windows below current
-opt.splitright = true -- Put new windows right of current
+opt.splitbelow = true       -- Put new windows below current
+opt.splitright = true       -- Put new windows right of current
 opt.splitkeep = "screen"
 
-opt.incsearch = true -- incrementally display search results
-opt.inccommand = "nosplit" -- preview incremental substitute
-opt.hlsearch = true -- highlight search results
-opt.ignorecase = true -- ignore case in searches by default
-opt.smartcase = true -- but make it case sensitive if an uppercase is entered
+opt.incsearch = true        -- incrementally display search results
+opt.inccommand = "nosplit"  -- preview incremental substitute
+opt.hlsearch = true         -- highlight search results
+opt.ignorecase = true       -- ignore case in searches by default
+opt.smartcase = true        -- but make it case sensitive if an uppercase is entered
 
-opt.autoindent = true -- automatically indent
-opt.expandtab = true -- Use spaces instead of tabs
-opt.tabstop = 2 -- Number of spaces tabs count for
-opt.shiftwidth = 2 -- Size of an indent
+opt.autoindent = true       -- automatically indent
+opt.expandtab = true        -- Use spaces instead of tabs
+opt.tabstop = 2             -- Number of spaces tabs count for
+opt.shiftwidth = 2          -- Size of an indent
 
-opt.undofile = true -- enable persistent undo
+opt.undofile = true         -- enable persistent undo
 opt.undodir = "~/.vim/undo" -- put them all in the same place
-opt.undolevels=1000 -- lots of levels
-opt.undoreload=10000 -- save the whole buffer for undo when reloading it
+opt.undolevels=1000         -- lots of levels
+opt.undoreload=10000        -- save the whole buffer for undo when reloading it
 
 if vim.fn.has("nvim-0.10") == 1 then
   opt.smoothscroll = true
