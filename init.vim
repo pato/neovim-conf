@@ -329,7 +329,7 @@ nnoremap <silent> <space>rn    <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> <space>f     <cmd>lua vim.lsp.buf.formatting()<CR>
 
 " Rust actions
-if has('nvim-0.10')
+if has('nvim-0.10') == 1
   nnoremap <leader>gc 	       <cmd>RustLsp openCargo<CR>
   nnoremap <leader>gm 	       <cmd>RustLsp parentModule<CR>
   nnoremap <leader>rr 	       <cmd>RustLsp runnables<CR>
@@ -357,11 +357,14 @@ nnoremap <leader>tt :Neotree toggle<CR>
 nnoremap <leader>tf :Neotree reveal<CR>
 
 " FZF
+nnoremap <C-P>      <cmd>Telescope find_files<CR>
 nnoremap <leader>fo :Telescope find_files<CR>
 nnoremap <leader>fg :Telescope git_files<CR>
 nnoremap <leader>ff :Telescope live_grep<CR>
 nnoremap <leader>fd :Telescope search_dir_picker<CR>
-nnoremap <C-P>      <cmd>Telescope find_files<CR>
+if has('nvim-0.10') == 1
+  nnoremap <leader>fc <cmd>lua require('dropbar.api').pick()<CR>
+end
 
 " Commentary
 " maps gc in visual mode to toggle
