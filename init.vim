@@ -324,7 +324,6 @@ xnoremap <silent> ga           <cmd>lua vim.lsp.buf.code_action()<CR>
 nnoremap <silent> ga           <cmd>lua vim.lsp.buf.code_action()<CR>
 nnoremap <silent> ge           <cmd>Telescope diagnostics<CR>
 nnoremap <silent> gb           <cmd>Telescope buffers<CR>
-nnoremap <silent> gt           <cmd>TodoTelescope<CR>
 nnoremap <silent> <space>rn    <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> <space>f     <cmd>lua vim.lsp.buf.formatting()<CR>
 
@@ -343,15 +342,16 @@ endif
 nnoremap <leader>rl 	       <cmd>Telescope resume<CR>
 
 " Telescope-only bindings
-nnoremap <leader>gl 	       <cmd>Telescope resume<CR>
-nnoremap <leader>ggc 	       <cmd>Telescope colorscheme<CR>
+nnoremap <leader>gt          <cmd>TodoTelescope<CR>
+nnoremap <leader>gl          <cmd>Telescope resume<CR>
+nnoremap <leader>ggc         <cmd>Telescope colorscheme<CR>
 
 " Diffview
 nnoremap <leader>dd 	       <cmd>DiffviewOpen<CR>
 nnoremap <leader>dm 	       <cmd>DiffviewOpen main...<CR>
 nnoremap <leader>dc 	       <cmd>DiffviewClose<CR>
 
-" NERD Tree
+" File Tree
 nnoremap <leader>tn :Neotree<CR>
 nnoremap <leader>tt :Neotree toggle<CR>
 nnoremap <leader>tf :Neotree reveal<CR>
@@ -364,6 +364,7 @@ nnoremap <leader>ff :Telescope live_grep<CR>
 nnoremap <leader>fd :Telescope search_dir_picker<CR>
 if has('nvim-0.10') == 1
   nnoremap <leader>fc <cmd>lua require('dropbar.api').pick()<CR>
+  nnoremap <leader>i <cmd>lua vim.lsp.inlay_hint(0)<CR>
 end
 
 " Commentary
