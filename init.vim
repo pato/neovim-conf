@@ -498,7 +498,7 @@ require'alpha'.setup(require'alpha.themes.startify'.config)
 
 -- Make sure we have required LSP servers 
 require("mason-lspconfig").setup {
-    ensure_installed = { "rust_analyzer", "tailwindcss", "marksman", "helm_ls", "jedi_language_server" },
+    ensure_installed = { "rust_analyzer", "tailwindcss", "marksman", "helm_ls", "jedi_language_server", "bashls", "ruff_lsp", "dockerls", "taplo" },
 }
 
 -- Enable symbol usage (needs to be before LspAttach)
@@ -537,6 +537,10 @@ nvim_lsp.tailwindcss.setup {
 }
 nvim_lsp.marksman.setup { }
 nvim_lsp.jedi_language_server.setup{}
+nvim_lsp.bashls.setup{}
+nvim_lsp.ruff_lsp.setup{}
+nvim_lsp.dockerls.setup{}
+nvim_lsp.taplo.setup{}
 
 if vim.fn.has("nvim-0.10") == 1 then
   -- If we are in neovim-0.10, we don't actually need to call setup
