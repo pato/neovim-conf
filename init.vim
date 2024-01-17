@@ -162,6 +162,7 @@ Plug 'folke/which-key.nvim'
 " CodeGPT to add ChatGPT ! (you'll need to set your OPENAI_API_KEY environment variable)
 Plug 'MunifTanjim/nui.nvim'
 Plug 'dpayne/CodeGPT.nvim'
+Plug 'robitx/gp.nvim'
 
 " Better UI
 Plug 'MunifTanjim/nui.nvim'
@@ -493,6 +494,15 @@ require("catppuccin").setup({
 
 -- Setup mason to manage LSPs, debuggers, and linters
 require("mason").setup()
+
+-- Set up gp (chatGPT) plugin
+-- Use <c-g><c-g> to request answer
+-- Commands:
+--  GpChatNew [vsplit, split, tabnew, popup]
+--  GpChatToggle
+--  GpImplement
+--  GpRewrite
+require("gp").setup()
 
 -- Setup dashboard
 require'alpha'.setup(require'alpha.themes.startify'.config)
