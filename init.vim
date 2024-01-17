@@ -232,6 +232,16 @@ function FixTrailing()
 endfunction
 command -bar FixTrailing call FixTrailing()
 
+" Function to toggle inlay hints
+function! ToggleInlayHints()
+  " Check if inlay hints are currently enabled
+  if luaeval("vim.lsp.inlay_hint.is_enabled(0)")
+    lua vim.lsp.inlay_hint.enable(0, false)
+  else
+    lua vim.lsp.inlay_hint.enable(0, true)
+  endif
+endfunction
+
 " For finger fumbling (thanks rperce)
 command! W w
 command! Wq wq
@@ -365,7 +375,7 @@ nnoremap <leader>ff :Telescope live_grep<CR>
 nnoremap <leader>fd :Telescope search_dir_picker<CR>
 if has('nvim-0.10') == 1
   nnoremap <leader>fc <cmd>lua require('dropbar.api').pick()<CR>
-  nnoremap <leader>i <cmd>lua vim.lsp.inlay_hint(0)<CR>
+  nnoremap <leader>i <cmd>call ToggleInlayHints()<CR>
 end
 
 " Commentary
@@ -526,7 +536,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
       local client = vim.lsp.get_client_by_id(ev.data.client_id)
       if client.server_capabilities.inlayHintProvider then
         vim.g.inlay_hints_visible = true
-        vim.lsp.inlay_hint(ev.buf, true)
+        vim.lsp.inlay_hint.enable(ev.buf, true)
       end
     end
 
