@@ -802,27 +802,6 @@ require("which-key").setup {
 -- Configure CodeGPT 
 require("codegpt.config")
 
-vim.g["codegpt_commands"] = {
-["completion"] = {
-    callback_type = "code_popup",
-},
-["code-edit"] = {
-    callback_type = "code_popup",
-},
-["doc"] = {
-    callback_type = "code_popup",
-},
-["opt"] = {
-    callback_type = "code_popup",
-},
-["tests"] = {
-    callback_type = "code_popup",
-},
-["chat"] = {
-    callback_type = "text_popup",
-},
-}
-
 -- Enable the status line
 local colors = {
   red = '#ca1243',
