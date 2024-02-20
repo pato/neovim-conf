@@ -21,6 +21,9 @@ Plug 'projekt0n/github-nvim-theme'
 Plug 'folke/tokyonight.nvim'
 Plug 'Verf/deepwhite.nvim'
 
+" Make editing big files better
+Plug 'LunarVim/bigfile.nvim'
+
 " Automatically set theme based on system dark mode
 Plug 'f-person/auto-dark-mode.nvim'
 
