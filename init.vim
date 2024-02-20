@@ -78,8 +78,8 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 
 " Filetree plugin
-Plug 'preservim/nerdtree'
 Plug 'nvim-neo-tree/neo-tree.nvim', { 'branch': 'v3.x' }
+Plug 'stevearc/oil.nvim'
 
 " Toggle-term for more ergonomic terminal experience
 Plug 'akinsho/toggleterm.nvim'
@@ -369,6 +369,9 @@ nnoremap <leader>dc 	       <cmd>DiffviewClose<CR>
 nnoremap <leader>tn :Neotree<CR>
 nnoremap <leader>tt :Neotree toggle<CR>
 nnoremap <leader>tf :Neotree reveal<CR>
+
+" Oil
+nnoremap - <CMD>Oil<CR>
 
 " FZF
 nnoremap <C-P>      <cmd>Telescope find_files<CR>
