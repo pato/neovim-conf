@@ -50,12 +50,28 @@ opt.undolevels = 1000 -- lots of levels
 opt.undoreload = 10000 -- save the whole buffer for undo when reloading it
 opt.undodir = vim.fn.stdpath("config") .. "/.undo" -- put them all in the same place
 
+opt.breakindent = true -- enable break indent
+opt.scrolloff = 10 -- minimum number of screen lines to keep above/below cursor
+
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>") -- clear highlights
+
 if vim.fn.has("nvim-0.10") == 1 then
-	opt.smoothscroll = true
+	opt.smoothscroll = true -- enable smoothscroll
 end
 
-vim.g.rustaceanvim = {
-	tools = { -- rustaceanvim/rust-tools options
+-- Highlight when yanking (copying) text
+vim.api.nvim_create_autocmd("TextYankPost", {
+	desc = "Highlight when yanking (copying) text",
+	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+	callback = function()
+		vim.highlight.on_yank()
+	end,
+})
+
+vim.g.have_nerd_font = true
+
+vim.g.rustaceanvim = { -- rustaceanvim/rust-tools options
+	tools = {
 		enable_clippy = false,
 	},
 	server = { -- lsp server options
