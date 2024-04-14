@@ -53,6 +53,14 @@ opt.undodir = vim.fn.stdpath("config") .. "/.undo" -- put them all in the same p
 opt.breakindent = true -- enable break indent
 opt.scrolloff = 10 -- minimum number of screen lines to keep above/below cursor
 
+-- Let's not pretend that we don't constantly mistype shift
+vim.cmd("command! -nargs=* W w")
+vim.cmd("command! -nargs=* Wq wq")
+vim.cmd("command! -nargs=* WQ wq")
+vim.cmd("command! -nargs=* Q q")
+vim.cmd("command! -nargs=* Qa qa")
+vim.cmd("command! -nargs=* QA qa")
+
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>") -- clear highlights
 
 if vim.fn.has("nvim-0.10") == 1 then
