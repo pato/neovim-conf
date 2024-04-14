@@ -59,6 +59,14 @@ vim.g.rustaceanvim = {
 		enable_clippy = false,
 	},
 	server = { -- lsp server options
+		on_attach = function(client, bufnr)
+			vim.api.nvim_set_keymap("n", "gD", "<cmd>RustLsp externalDocs<CR>", { silent = true })
+			vim.api.nvim_set_keymap("n", "rr", "<cmd>RustLsp runnables<CR>", { silent = true })
+			vim.api.nvim_set_keymap("n", "gm", "<cmd>RustLsp parentModule<CR>", { silent = true })
+			vim.api.nvim_set_keymap("n", "gc", "<cmd>RustLsp openCargo<CR>", { silent = true })
+			--vim.api.nvim_set_keymap("n", "ga", "<cmd>lua vim.cmd.RustLsp('codeAction')<CR>", { silent = true }) -- has grouping
+			-- vim.lsp.inlay_hint.enable(bufnr)
+		end,
 		settings = {
 			["rust-analyzer"] = { -- https://rust-analyzer.github.io/manual.html
 				checkOnSave = false,
