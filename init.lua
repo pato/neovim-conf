@@ -95,34 +95,14 @@ require("lazy").setup({
 		"mrcjkb/rustaceanvim",
 		version = "^4", -- Recommended
 		ft = { "rust" },
-		-- TODO: make these settings work!
-		-- opts = {
-		-- 	tools = { -- rustaceanvim/rust-tools options
-		-- 		enable_clippy = false,
-		-- 	},
-		-- 	server = {
-		-- 		settings = {
-		-- 			["rust-analyzer"] = { -- https://rust-analyzer.github.io/manual.html
-		-- 				checkOnSave = false,
-		-- 			},
-		-- 		},
-		-- 		on_attach = function(client, bufnr)
-		-- 			vim.api.nvim_set_keymap("n", "gD", "<cmd>RustLsp externalDocs<CR>", { silent = true })
-		-- 			vim.api.nvim_set_keymap("n", "rr", "<cmd>RustLsp runnables<CR>", { silent = true })
-		-- 			vim.api.nvim_set_keymap("n", "gm", "<cmd>RustLsp parentModule<CR>", { silent = true })
-		-- 			vim.api.nvim_set_keymap("n", "gc", "<cmd>RustLsp openCargo<CR>", { silent = true })
-		-- 			--vim.api.nvim_set_keymap("n", "ga", "<cmd>lua vim.cmd.RustLsp('codeAction')<CR>", { silent = true }) -- has grouping
-		-- 		end,
-		-- 	},
-		-- },
 	},
 
-	{
+	{ -- Better default UI elements
 		"stevearc/dressing.nvim",
 		opts = {},
 	},
 
-	{
+	{ -- Because life is too short to type closing parens
 		"windwp/nvim-autopairs",
 		-- Optional dependency
 		dependencies = { "hrsh7th/nvim-cmp" },
@@ -144,8 +124,6 @@ require("lazy").setup({
 			{ -- If encountering errors, see telescope-fzf-native README for installation instructions
 				"nvim-telescope/telescope-fzf-native.nvim",
 				build = "make",
-				-- `cond` is a condition used to determine whether this plugin should be
-				-- installed and loaded.
 				cond = function()
 					return vim.fn.executable("make") == 1
 				end,
@@ -156,9 +134,6 @@ require("lazy").setup({
 		},
 		config = function()
 			require("telescope").setup({
-				-- You can put your default mappings / updates / etc. in here
-				--  All the info you're looking for is in `:help telescope.setup()`
-				--
 				defaults = {
 					mappings = {
 						-- i = { ["<c-enter>"] = "to_fuzzy_refine" },
@@ -229,7 +204,7 @@ require("lazy").setup({
 		end,
 	},
 
-	{
+	{ -- Buffer-based file tree plugin
 		"stevearc/oil.nvim",
 		opts = {},
 		lazy = false,
@@ -240,7 +215,7 @@ require("lazy").setup({
 		end,
 	},
 
-	{
+	{ -- Because I wish I had Emac's magit
 		"NeogitOrg/neogit",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -258,7 +233,7 @@ require("lazy").setup({
 		end,
 	},
 
-	{
+	{ -- auto-save sessions
 		"rmagatti/auto-session",
 		config = function()
 			require("auto-session").setup({
@@ -271,36 +246,16 @@ require("lazy").setup({
 	{ -- LSP Configuration & Plugins
 		"neovim/nvim-lspconfig",
 		dependencies = {
-			-- Automatically install LSPs and related tools to stdpath for Neovim
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
-
-			-- Useful status updates for LSP.
-			-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
 			{ "j-hui/fidget.nvim", opts = {} },
-
-			-- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
-			-- used for completion, annotations and signatures of Neovim apis
 			{ "folke/neodev.nvim", opts = {} },
 		},
-		-- opts = {
-		-- 	setup = {
-		-- 		rust_analyzer = function()
-		-- 			return true
-		-- 		end,
-		-- 	},
-		-- },
 		config = function()
-			--  This function gets run when an LSP attaches to a particular buffer.
-			--    That is to say, every time a new file is opened that is associated with
-			--    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
-			--    function will be executed to configure the current buffer
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
 				callback = function(event)
-					-- In this case, we create a function that lets us more easily define mappings specific
-					-- for LSP related items. It sets the mode, buffer and description for us each time.
 					local map = function(keys, func, desc)
 						vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 					end
@@ -402,11 +357,6 @@ require("lazy").setup({
 			}
 
 			-- Ensure the servers and tools above are installed
-			--  To check the current status of installed tools and/or manually install
-			--  other tools, you can run
-			--    :Mason
-			--
-			--  You can press `g?` for help in this menu.
 			require("mason").setup()
 
 			-- You can add other tools here that you want Mason to install
@@ -429,11 +379,6 @@ require("lazy").setup({
 					end,
 				},
 			})
-
-			-- make sure there is no setting for rust_analyzer, as that is handled by the rustaceanvim plugin
-			-- require("mason-lspconfig").setup_handlers({
-			-- 	["rust_analyzer"] = function() end,
-			-- })
 		end,
 	},
 
@@ -593,5 +538,4 @@ require("lazy").setup({
 	},
 })
 
--- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
