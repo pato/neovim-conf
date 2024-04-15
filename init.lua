@@ -214,6 +214,7 @@ require("lazy").setup({
 			vim.keymap.set("n", "<leader>fo", builtin.find_files, { desc = "Search across files" })
 			vim.keymap.set("n", "<leader>fg", builtin.git_files, { desc = "Search across git-tracked files" })
 			vim.keymap.set("n", "<leader>ff", builtin.live_grep, { desc = "Live grep across project" })
+			vim.keymap.set("n", "ge", builtin.diagnostics, { desc = "[G]oto [D]iagnostics" })
 			-- vim.keymap.set("n", "<leader>fd", builtin.search_dir_picker, { desc = "Live grep in a picked irectory" })
 
 			-- Slightly advanced example of overriding default behavior and theme
