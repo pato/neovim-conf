@@ -574,6 +574,21 @@ require("lazy").setup({
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = { signs = false },
 	},
+
+	{ -- for task running
+		"stevearc/overseer.nvim",
+		opts = {},
+		config = function()
+			vim.keymap.set(
+				"n",
+				"<leader>cc",
+				"<CMD>OverseerRunCmd cargo check --all-targets<CR>",
+				{ desc = "Run cargo check --all-targets with overseer" }
+			)
+			vim.keymap.set("n", "<leader>ct", "<CMD>OverseerToggle<CR>", { desc = "Toggle overseer" })
+			require("overseer").setup()
+		end,
+	},
 })
 
 -- vim: ts=2 sts=2 sw=2 et
