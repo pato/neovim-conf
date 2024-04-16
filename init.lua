@@ -585,7 +585,14 @@ require("lazy").setup({
 				"<CMD>OverseerRunCmd cargo check --all-targets<CR>",
 				{ desc = "Run cargo check --all-targets with overseer" }
 			)
+			vim.keymap.set(
+				"n",
+				"<leader>cl",
+				"<CMD>OverseerRunCmd make clippy<CR>",
+				{ desc = "Run make clippy with overseer" }
+			)
 			vim.keymap.set("n", "<leader>ct", "<CMD>OverseerToggle<CR>", { desc = "Toggle overseer" })
+			vim.keymap.set("n", "<leader>tt", "<CMD>OverseerToggle<CR>", { desc = "[T]oggle overseer" })
 			require("overseer").setup()
 		end,
 	},
