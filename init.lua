@@ -93,7 +93,7 @@ vim.g.rustaceanvim = { -- rustaceanvim/rust-tools options
 		end,
 		settings = {
 			["rust-analyzer"] = { -- https://rust-analyzer.github.io/manual.html
-				checkOnSave = false,
+				checkOnSave = true,
 			},
 		},
 	},
@@ -374,6 +374,7 @@ require("lazy").setup({
 				-- clangd = {},
 				-- gopls = {},
 				-- pyright = {},
+				rust_analyzer = function() end,
 				-- rust_analyzer = {},
 				-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
 				--
@@ -420,6 +421,9 @@ require("lazy").setup({
 						-- certain features of an LSP (for example, turning off formatting for tsserver)
 						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 						require("lspconfig")[server_name].setup(server)
+					end,
+					["rust_analyzer"] = function()
+						return true
 					end,
 				},
 			})
