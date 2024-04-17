@@ -597,6 +597,12 @@ require("lazy").setup({
 				"<CMD>OverseerRunCmd make clippy<CR>",
 				{ desc = "Run make clippy with overseer" }
 			)
+			vim.keymap.set(
+				"n",
+				"<leader>cl",
+				"<CMD>OverseerRunCmd make fmt<CR>",
+				{ desc = "Run make format with overseer" }
+			)
 			vim.keymap.set("n", "<leader>ct", "<CMD>OverseerToggle<CR>", { desc = "Toggle overseer" })
 			vim.keymap.set("n", "<leader>tt", "<CMD>OverseerToggle<CR>", { desc = "[T]oggle overseer" })
 			require("overseer").setup()
