@@ -102,7 +102,6 @@ vim.g.rustaceanvim = { -- rustaceanvim/rust-tools options
 require("lazy").setup({
 	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
 	"tpope/vim-commentary", -- Use 'gc' to comment lines in all languages
-	"tpope/vim-fugitive", -- Provide git tools (such as :Git, :Git blame)
 	"tpope/vim-surround", -- Allow deleting/adding based on surrounding characters
 	"tpope/vim-repeat", -- Allow repeating plugin actions (such as surround actions)
 
@@ -137,6 +136,13 @@ require("lazy").setup({
 	{ -- Better default UI elements
 		"stevearc/dressing.nvim",
 		opts = {},
+	},
+
+	{ -- Fugitive style Git blame, <TAB>/<BS> to push/pop commit stack view. i for info
+		"FabijanZulj/blame.nvim",
+		config = function()
+			require("blame").setup()
+		end,
 	},
 
 	{ -- Because life is too short to type closing parens
