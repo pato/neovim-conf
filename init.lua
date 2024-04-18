@@ -89,6 +89,7 @@ vim.g.rustaceanvim = { -- rustaceanvim/rust-tools options
 			vim.api.nvim_set_keymap("n", "gm", "<cmd>RustLsp parentModule<CR>", { silent = true })
 			vim.api.nvim_set_keymap("n", "gc", "<cmd>RustLsp openCargo<CR>", { silent = true })
 			vim.api.nvim_set_keymap("n", "<leader>ga", "<cmd>lua vim.cmd.RustLsp('codeAction')<CR>", { silent = true }) -- has grouping
+			vim.api.nvim_set_keymap("n", "g,", "<cmd>RustLsp renderDiagnostic<CR>", { silent = true })
 			-- vim.lsp.inlay_hint.enable(bufnr)
 		end,
 		settings = {
