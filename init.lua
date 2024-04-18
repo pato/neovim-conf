@@ -53,6 +53,18 @@ opt.undodir = vim.fn.stdpath("config") .. "/.undo" -- put them all in the same p
 opt.breakindent = true -- enable break indent
 opt.scrolloff = 10 -- minimum number of screen lines to keep above/below cursor
 
+if vim.g.neovide then
+	-- just for Ilion Beyst
+	vim.g.neovide_cursor_animation_length = 0.05
+	vim.g.neovide_cursor_trail_size = 0.2
+	-- Allow clipboard copy paste in neovide
+	vim.g.neovide_input_use_logo = 1
+	vim.api.nvim_set_keymap("", "<D-v>", "+p<CR>", { noremap = true, silent = true })
+	vim.api.nvim_set_keymap("!", "<D-v>", "<C-R>+", { noremap = true, silent = true })
+	vim.api.nvim_set_keymap("t", "<D-v>", "<C-R>+", { noremap = true, silent = true })
+	vim.api.nvim_set_keymap("v", "<D-v>", "<C-R>+", { noremap = true, silent = true })
+end
+
 -- Let's not pretend that we don't constantly mistype shift
 vim.cmd("command! -nargs=* W w")
 vim.cmd("command! -nargs=* Wq wq")
