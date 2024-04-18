@@ -625,6 +625,32 @@ require("lazy").setup({
 			require("overseer").setup()
 		end,
 	},
+
+	{ -- toggleterm for more ergonomic terminals
+		"akinsho/toggleterm.nvim",
+		version = "*",
+		config = function()
+			-- Map Esc to bring us back to normal mode when in terminal
+			vim.api.nvim_set_keymap("t", "<ESC>", [[<C-\><C-n>]], { noremap = true })
+
+			require("toggleterm").setup({
+				size = function(term)
+					if term.direction == "horizontal" then
+						return 15
+					elseif term.direction == "vertical" then
+						return vim.o.columns * 0.4
+					end
+				end,
+				open_mapping = [[<c-\>]],
+				hide_numbers = true, -- hide the number column in toggleterm buffers
+				shade_terminals = true,
+				start_in_insert = true,
+				-- direction = 'vertical' | 'horizontal' | 'window' | 'float',
+				persist_size = true,
+			})
+		end,
+		opts = {},
+	},
 })
 
 -- vim: ts=2 sts=2 sw=2 et
