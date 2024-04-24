@@ -2,6 +2,7 @@
   "LuaSnip": { "branch": "master", "commit": "be7be2ca7f55bb881a7ffc16b2efa5af034ab06b" },
   "auto-session": { "branch": "main", "commit": "9e0a169b6fce8791278abbd110717b921afe634d" },
   "blame.nvim": { "branch": "main", "commit": "21fe989f323ad0418ecf2e8f8e4d2000613b269b" },
+  "close-buffers.vim": { "branch": "master", "commit": "0b29fbc483344e2ebec96a28070698d72a8a767c" },
   "cmp-nvim-lsp": { "branch": "main", "commit": "5af77f54de1b16c34b23cba810150689a3a90312" },
   "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },
   "cmp_luasnip": { "branch": "master", "commit": "05a9ab28b53f71d1aece421ef32fee2cb857a843" },
