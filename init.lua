@@ -117,6 +117,7 @@ require("lazy").setup({
 	"tpope/vim-commentary", -- Use 'gc' to comment lines in all languages
 	"tpope/vim-surround", -- Allow deleting/adding based on surrounding characters
 	"tpope/vim-repeat", -- Allow repeating plugin actions (such as surround actions)
+	"Asheq/close-buffers.vim", -- Provides ":Bdelete hidden"
 
 	{ -- my favorite theme
 		"folke/tokyonight.nvim",
