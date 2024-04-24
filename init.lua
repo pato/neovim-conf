@@ -54,7 +54,9 @@ opt.breakindent = true -- enable break indent
 opt.scrolloff = 10 -- minimum number of screen lines to keep above/below cursor
 
 if vim.g.neovide then
-	-- just for Ilion Beyst
+	-- Configure gui font
+	vim.o.guifont = "Hack Nerd Font Mono:h14" -- text below applies for VimScript
+	-- Make the animations less in your face
 	vim.g.neovide_cursor_animation_length = 0.05
 	vim.g.neovide_cursor_trail_size = 0.2
 	-- Allow clipboard copy paste in neovide
