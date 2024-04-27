@@ -655,6 +655,86 @@ require("lazy").setup({
 		end,
 		opts = {},
 	},
+
+	{ -- extend treesitter with text objects
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+	},
+
+	{ -- treesitter extensions
+		"nvim-treesitter/nvim-treesitter",
+		build = ":TSUpdate",
+		config = function()
+			local configs = require("nvim-treesitter.configs")
+
+			configs.setup({
+				ensure_installed = {
+					"bash",
+					"diff",
+					"git_rebase",
+					"gitcommit",
+					"html",
+					"java",
+					"lua",
+					"markdown",
+					"markdown_inline",
+					"query",
+					"regex",
+					"rust",
+					"vim",
+					"vimdoc",
+				},
+				sync_install = false, -- don't install ensure_installed synchronously
+				highlight = {
+					enable = true,
+					-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+					-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+					-- Using this option may slow down your editor, and you may see some duplicate highlights.
+					-- Instead of true it can also be a list of languages
+					additional_vim_regex_highlighting = false,
+				},
+				incremental_selection = {
+					enable = true,
+					keymaps = {
+						init_selection = "<space>ss",
+						node_incremental = "<space>si",
+						scope_incremental = "<space>sc",
+						node_decremental = "<space>sd",
+					},
+				},
+				indent = { enable = false },
+				textobjects = {
+					lsp_interop = {
+						enable = true,
+						border = "none",
+						floating_preview_opts = {},
+						peek_definition_code = {
+							["<leader>df"] = "@function.outer",
+							["<leader>dF"] = "@class.outer",
+						},
+					},
+					select = {
+						enable = true,
+						lookahead = true,
+						keymaps = {
+							["af"] = "@function.outer",
+							["if"] = "@function.inner",
+							["ac"] = "@class.outer",
+							["aa"] = "@parameter.inner",
+							["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
+							["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
+						},
+						selection_modes = {
+							["@parameter.outer"] = "v", -- charwise
+							["@function.outer"] = "V", -- linewise
+							["@class.outer"] = "<c-v>", -- blockwise
+						},
+						include_surrounding_whitespace = true,
+					},
+				},
+			})
+		end,
+	},
 })
 
 -- vim: ts=2 sts=2 sw=2 et
