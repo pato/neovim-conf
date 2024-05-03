@@ -603,7 +603,12 @@ require("lazy").setup({
 	{ -- lualine display
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
-		opts = {},
+		opts = {
+			sections = {
+				lualine_x = { "overseer" },
+				lualine_y = { "filetype" },
+			},
+		},
 	},
 
 	{ -- display TODOs prominently
