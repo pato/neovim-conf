@@ -55,10 +55,14 @@ opt.scrolloff = 10 -- minimum number of screen lines to keep above/below cursor
 
 if vim.g.neovide then
 	-- Configure gui font
-	vim.o.guifont = "Hack Nerd Font Mono:h14" -- text below applies for VimScript
+	vim.o.guifont = "Hack Nerd Font Mono:h13"
 	-- Make the animations less in your face
 	vim.g.neovide_cursor_animation_length = 0.05
 	vim.g.neovide_cursor_trail_size = 0.2
+	-- General quality of life improvements
+	vim.g.neovide_cursor_vfx_mode = "pixiedust"
+	vim.g.neovide_hide_mouse_when_typing = true
+	vim.g.neovide_theme = "auto"
 	-- Allow clipboard copy paste in neovide
 	vim.g.neovide_input_use_logo = 1
 	vim.api.nvim_set_keymap("", "<D-v>", "+p<CR>", { noremap = true, silent = true })
