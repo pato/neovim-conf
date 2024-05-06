@@ -108,6 +108,28 @@ vim.g.rustaceanvim = { -- rustaceanvim/rust-tools options
 			vim.api.nvim_set_keymap("n", "gc", "<cmd>RustLsp openCargo<CR>", { silent = true })
 			vim.api.nvim_set_keymap("n", "<leader>ga", "<cmd>lua vim.cmd.RustLsp('codeAction')<CR>", { silent = true }) -- has grouping
 			vim.api.nvim_set_keymap("n", "g,", "<cmd>RustLsp renderDiagnostic<CR>", { silent = true })
+			local opts = { noremap = true, silent = true }
+			vim.api.nvim_buf_set_keymap(
+				bufnr,
+				"n",
+				"s",
+				'<cmd>lua require("tree_climber_rust").init_selection()<CR>',
+				opts
+			)
+			vim.api.nvim_buf_set_keymap(
+				bufnr,
+				"x",
+				"s",
+				'<cmd>lua require("tree_climber_rust").select_incremental()<CR>',
+				opts
+			)
+			vim.api.nvim_buf_set_keymap(
+				bufnr,
+				"x",
+				"S",
+				'<cmd>lua require("tree_climber_rust").select_previous()<CR>',
+				opts
+			)
 			-- vim.lsp.inlay_hint.enable(bufnr)
 		end,
 		settings = {
@@ -151,6 +173,13 @@ require("lazy").setup({
 		"mrcjkb/rustaceanvim",
 		version = "^4", -- Recommended
 		ft = { "rust" },
+	},
+
+	{ -- Treesitter incremental tree walking for Rust
+		"adaszko/tree_climber_rust.nvim",
+		dependencies = {
+			"mrcjkb/rustaceanvim",
+		},
 	},
 
 	{ -- Better default UI elements
