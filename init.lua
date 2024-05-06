@@ -101,14 +101,14 @@ vim.g.rustaceanvim = { -- rustaceanvim/rust-tools options
 		enable_clippy = false,
 	},
 	server = { -- lsp server options
-		on_attach = function(client, bufnr)
-			vim.api.nvim_set_keymap("n", "gD", "<cmd>RustLsp externalDocs<CR>", { silent = true })
-			vim.api.nvim_set_keymap("n", "rr", "<cmd>RustLsp runnables<CR>", { silent = true })
-			vim.api.nvim_set_keymap("n", "gm", "<cmd>RustLsp parentModule<CR>", { silent = true })
-			vim.api.nvim_set_keymap("n", "gc", "<cmd>RustLsp openCargo<CR>", { silent = true })
-			vim.api.nvim_set_keymap("n", "<leader>ga", "<cmd>lua vim.cmd.RustLsp('codeAction')<CR>", { silent = true }) -- has grouping
-			vim.api.nvim_set_keymap("n", "g,", "<cmd>RustLsp renderDiagnostic<CR>", { silent = true })
+		on_attach = function(_client, bufnr)
 			local opts = { noremap = true, silent = true }
+			vim.api.nvim_set_keymap("n", "gD", "<cmd>RustLsp externalDocs<CR>", opts)
+			vim.api.nvim_set_keymap("n", "rr", "<cmd>RustLsp runnables<CR>", opts)
+			vim.api.nvim_set_keymap("n", "gm", "<cmd>RustLsp parentModule<CR>", opts)
+			vim.api.nvim_set_keymap("n", "gc", "<cmd>RustLsp openCargo<CR>", opts)
+			vim.api.nvim_set_keymap("n", "<leader>ga", "<cmd>lua vim.cmd.RustLsp('codeAction')<CR>", opts) -- has grouping
+			vim.api.nvim_set_keymap("n", "g,", "<cmd>RustLsp renderDiagnostic<CR>", opts)
 			vim.api.nvim_buf_set_keymap(
 				bufnr,
 				"n",
