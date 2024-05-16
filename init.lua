@@ -141,7 +141,6 @@ vim.g.rustaceanvim = { -- rustaceanvim/rust-tools options
 
 require("lazy").setup({
 	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
-	"tpope/vim-commentary", -- Use 'gc' to comment lines in all languages
 	"tpope/vim-surround", -- Allow deleting/adding based on surrounding characters
 	"tpope/vim-repeat", -- Allow repeating plugin actions (such as surround actions)
 	"Asheq/close-buffers.vim", -- Provides ":Bdelete hidden"
