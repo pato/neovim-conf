@@ -130,7 +130,6 @@ vim.g.rustaceanvim = { -- rustaceanvim/rust-tools options
 				'<cmd>lua require("tree_climber_rust").select_previous()<CR>',
 				opts
 			)
-			-- vim.lsp.inlay_hint.enable(bufnr)
 		end,
 		settings = {
 			["rust-analyzer"] = { -- https://rust-analyzer.github.io/manual.html
@@ -391,6 +390,18 @@ require("lazy").setup({
 							buffer = event.buf,
 							callback = vim.lsp.buf.clear_references,
 						})
+					end
+
+					if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
+						-- 	-- auto enable them for the current buffer
+						vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
+						-- 	-- create a keymap for toggling inlay hints
+						map("<leader>i", function()
+							vim.lsp.inlay_hint.enable(
+								not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }),
+								{ bufnr = event.buf }
+							)
+						end, "Toggle [I]nlay Hints")
 					end
 				end,
 			})
