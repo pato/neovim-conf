@@ -646,6 +646,9 @@ require("lazy").setup({
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = {
+			options = {
+				globalstatus = true,
+			},
 			sections = {
 				lualine_x = { "overseer" },
 				lualine_y = { "filetype" },
@@ -792,6 +795,17 @@ require("lazy").setup({
 					},
 				},
 			})
+		end,
+	},
+
+	{ -- IDE like experience
+		"Bekaboo/dropbar.nvim",
+		dependencies = {
+			"nvim-telescope/telescope-fzf-native.nvim",
+		},
+		opts = {},
+		config = function()
+			vim.api.nvim_set_keymap("n", "<leader>fc", "<cmd>lua require('dropbar.api').pick()<CR>", { silent = true })
 		end,
 	},
 })
