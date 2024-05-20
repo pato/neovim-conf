@@ -161,6 +161,7 @@ require("lazy").setup({
 	{ -- Adds git related signs to the gutter, as well as utilities for managing changes
 		"lewis6991/gitsigns.nvim",
 		opts = {},
+		event = "VeryLazy",
 	},
 
 	{ -- Rust Analyzer plugin for better support
@@ -180,6 +181,7 @@ require("lazy").setup({
 	{ -- Better default UI elements
 		"stevearc/dressing.nvim",
 		opts = {},
+		event = "VeryLazy",
 	},
 
 	{ -- Fugitive style Git blame, <TAB>/<BS> to push/pop commit stack view. i for info
@@ -719,6 +721,7 @@ require("lazy").setup({
 	{ -- extend treesitter with text objects
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		-- event = "VeryLazy",
 	},
 
 	{ -- treesitter extensions
@@ -794,6 +797,7 @@ require("lazy").setup({
 				},
 			})
 		end,
+		event = "VeryLazy",
 	},
 
 	{ -- IDE like experience
