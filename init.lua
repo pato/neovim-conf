@@ -714,6 +714,7 @@ require("lazy").setup({
 			})
 		end,
 		opts = {},
+		keys = { "<c-\\>" },
 	},
 
 	{ -- extend treesitter with text objects
