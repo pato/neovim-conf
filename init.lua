@@ -174,6 +174,7 @@ require("lazy").setup({
 		dependencies = {
 			"mrcjkb/rustaceanvim",
 		},
+		keys = { "s" },
 	},
 
 	{ -- Better default UI elements
