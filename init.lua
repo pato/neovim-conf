@@ -308,15 +308,9 @@ require("lazy").setup({
 			"sindrets/diffview.nvim",
 			"nvim-telescope/telescope.nvim", -- optional
 		},
-		config = function()
-			vim.keymap.set(
-				"n",
-				"<leader>gt",
-				"<CMD>Neogit kind=vsplit<CR>",
-				{ desc = "Open Neogit in a vertical split" }
-			)
-			require("neogit").setup()
-		end,
+		opts = {},
+		cmd = "Neogit",
+		keys = { { "<leader>gt", "<CMD>Neogit kind=vsplit<CR>", desc = "Open Neogit in a vertical split" } },
 	},
 
 	{ -- auto-save sessions
