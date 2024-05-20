@@ -721,7 +721,6 @@ require("lazy").setup({
 	{ -- extend treesitter with text objects
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
-		enabled = false, -- disabling as it seems to cause issues since 0.10 upgrade (as of 05/17/2024)
 	},
 
 	{ -- treesitter extensions
