@@ -143,7 +143,11 @@ require("lazy").setup({
 	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
 	"tpope/vim-surround", -- Allow deleting/adding based on surrounding characters
 	"tpope/vim-repeat", -- Allow repeating plugin actions (such as surround actions)
-	"Asheq/close-buffers.vim", -- Provides ":Bdelete hidden"
+
+	{ -- Provides ":Bdelete hidden"
+		"Asheq/close-buffers.vim",
+		cmd = "Bdelete",
+	},
 
 	{ -- my favorite theme
 		"folke/tokyonight.nvim",
