@@ -296,12 +296,9 @@ require("lazy").setup({
 	{ -- Buffer-based file tree plugin
 		"stevearc/oil.nvim",
 		opts = {},
-		lazy = false,
 		dependencies = { "nvim-tree/nvim-web-devicons" },
-		config = function()
-			vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
-			require("oil").setup()
-		end,
+		cmd = "Oil",
+		keys = { { "-", "<CMD>Oil<CR>", desc = "Open parent directory with Oil" } },
 	},
 
 	{ -- Because I wish I had Emac's magit
