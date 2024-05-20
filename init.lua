@@ -687,6 +687,7 @@ require("lazy").setup({
 			vim.keymap.set("n", "<leader>tt", "<CMD>OverseerToggle<CR>", { desc = "[T]oggle overseer" })
 			require("overseer").setup()
 		end,
+		keys = { "<leader>cr", "<leader>ct", "<leader>tt", "<leader>cc", "<leader>cl", "<leaderl>cf" },
 	},
 
 	{ -- toggleterm for more ergonomic terminals
