@@ -187,6 +187,7 @@ require("lazy").setup({
 		config = function()
 			require("blame").setup()
 		end,
+		cmd = "BlameToggle",
 	},
 
 	{ -- Because life is too short to type closing parens
