@@ -543,6 +543,7 @@ require("lazy").setup({
 			-- Adds other completion capabilities.
 			--  nvim-cmp does not ship with all sources by default. They are split
 			--  into multiple repos for maintenance purposes.
+			"hrsh7th/cmp-nvim-lsp-signature-help",
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-path",
 		},
@@ -624,6 +625,7 @@ require("lazy").setup({
 					{ name = "luasnip" },
 					{ name = "path" },
 					{ name = "buffer", keyword_length = 5 },
+					{ name = "nvim_lsp_signature_help" },
 				},
 				-- Rank the completions
 				sorting = {
