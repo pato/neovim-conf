@@ -650,10 +650,13 @@ require("lazy").setup({
 				globalstatus = true,
 			},
 			sections = {
-				lualine_x = { "overseer" },
+				-- commenting this for now as it forces loading of overseer, need to figure out how to add a section but still have it be lazy
+				-- lualine_x = { "overseer" },
 				lualine_y = { "filetype" },
 			},
+			extensions = { "lazy", "overseer", "oil", "mason", "toggleterm" },
 		},
+		event = "VeryLazy",
 	},
 
 	{ -- display TODOs prominently
