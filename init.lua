@@ -104,7 +104,7 @@ vim.g.rustaceanvim = { -- rustaceanvim/rust-tools options
 		on_attach = function(_client, bufnr)
 			local opts = { noremap = true, silent = true }
 			vim.api.nvim_set_keymap("n", "gD", "<cmd>RustLsp externalDocs<CR>", opts)
-			vim.api.nvim_set_keymap("n", "rr", "<cmd>RustLsp runnables<CR>", opts)
+			vim.api.nvim_set_keymap("n", "<leader>rr", "<cmd>RustLsp runnables<CR>", opts)
 			vim.api.nvim_set_keymap("n", "gm", "<cmd>RustLsp parentModule<CR>", opts)
 			vim.api.nvim_set_keymap("n", "gc", "<cmd>RustLsp openCargo<CR>", opts)
 			vim.api.nvim_set_keymap("n", "<leader>ga", "<cmd>lua vim.cmd.RustLsp('codeAction')<CR>", opts) -- has grouping
