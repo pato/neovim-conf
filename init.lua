@@ -55,7 +55,8 @@ opt.scrolloff = 10 -- minimum number of screen lines to keep above/below cursor
 
 if vim.g.neovide then
 	-- Configure gui font
-	vim.o.guifont = "Hack Nerd Font Mono:h13"
+	--vim.o.guifont = "Hack Nerd Font Mono:h13"
+	vim.o.guifont = "Rec Mono Semicasual:h13"
 	-- Make the animations less in your face
 	vim.g.neovide_cursor_animation_length = 0.05
 	vim.g.neovide_cursor_trail_size = 0.2
