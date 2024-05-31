@@ -102,7 +102,7 @@ vim.g.rustaceanvim = { -- rustaceanvim/rust-tools options
 		enable_clippy = false,
 	},
 	server = { -- lsp server options
-		on_attach = function(_client, bufnr)
+		on_attach = function(_, bufnr) -- fn(client, bufnr)
 			local opts = { noremap = true, silent = true }
 			vim.api.nvim_set_keymap("n", "gD", "<cmd>RustLsp externalDocs<CR>", opts)
 			vim.api.nvim_set_keymap("n", "<leader>rr", "<cmd>RustLsp runnables<CR>", opts)
@@ -630,6 +630,7 @@ require("lazy").setup({
 				},
 				-- Rank the completions
 				sorting = {
+					priority_weight = 1.0,
 					comparators = {
 						cmp.config.compare.locality,
 						cmp.config.compare.offset,
@@ -737,6 +738,9 @@ require("lazy").setup({
 			local configs = require("nvim-treesitter.configs")
 
 			configs.setup({
+				modules = {},
+				auto_install = false,
+				ignore_install = {},
 				ensure_installed = {
 					"bash",
 					"diff",
