@@ -150,13 +150,72 @@ require("lazy").setup({
 		cmd = "Bdelete",
 	},
 
-	{ -- my favorite theme
+	{ -- A clean, light/dark Neovim theme
 		"folke/tokyonight.nvim",
 		lazy = false,
 		priority = 1000,
 		init = function()
 			vim.cmd.colorscheme("tokyonight")
 		end,
+		config = function()
+			require("tokyonight").setup({
+				on_highlights = function(hl, c)
+					local prompt = "#2d3149"
+					hl.TelescopeNormal = {
+						bg = c.bg_dark,
+						fg = c.fg_dark,
+					}
+					hl.TelescopeBorder = {
+						bg = c.bg_dark,
+						fg = c.bg_dark,
+					}
+					hl.TelescopePromptNormal = {
+						bg = prompt,
+					}
+					hl.TelescopePromptBorder = {
+						bg = prompt,
+						fg = prompt,
+					}
+					hl.TelescopePromptTitle = {
+						bg = prompt,
+						fg = prompt,
+					}
+					hl.TelescopePreviewTitle = {
+						bg = c.bg_dark,
+						fg = c.bg_dark,
+					}
+					hl.TelescopeResultsTitle = {
+						bg = c.bg_dark,
+						fg = c.bg_dark,
+					}
+				end,
+			})
+		end,
+	},
+
+	{ -- High-contrast, light/dark, futuristic & vibrant colorsheme for neovim
+		"scottmckendry/cyberdream.nvim",
+		opts = {
+			italic_comments = true,
+			hide_fillchars = true,
+		},
+		event = "User LazyColorscheme",
+	},
+
+	{
+		"catppuccin/nvim",
+		name = "catppuccin",
+		opts = {
+			term_colors = true,
+			dropbar = {
+				enabled = true,
+			},
+			fidget = true,
+			mason = true,
+			overseer = true,
+			lsp_trouble = true,
+		},
+		event = "User LazyColorscheme",
 	},
 
 	{ -- Adds git related signs to the gutter, as well as utilities for managing changes
@@ -273,6 +332,18 @@ require("lazy").setup({
 			vim.keymap.set("n", "<leader>ff", builtin.live_grep, { desc = "Live grep across project" })
 			vim.keymap.set("n", "ge", builtin.diagnostics, { desc = "[G]oto [D]iagnostics" })
 			-- vim.keymap.set("n", "<leader>fd", builtin.search_dir_picker, { desc = "Live grep in a picked irectory" })
+
+			-- Add key binding for changing colorscheme that also lazy loads any non-default colorschemes
+			local function openColorschemePickerWithEvent()
+				vim.cmd("doautocmd User LazyColorscheme")
+				builtin.colorscheme({ enable_preview = true })
+			end
+			vim.keymap.set(
+				"n",
+				"<leader>uu",
+				openColorschemePickerWithEvent,
+				{ desc = "Change colorscheme with preview" }
+			)
 
 			-- Slightly advanced example of overriding default behavior and theme
 			vim.keymap.set("n", "<leader>/", function()
