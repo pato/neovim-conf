@@ -226,9 +226,13 @@ require("lazy").setup({
 			require("telescope").setup({
 				defaults = {
 					mappings = {
-						-- i = { ["<c-enter>"] = "to_fuzzy_refine" },
-						-- i = { ["<c-t>"] = require("trouble.providers.telescope").open_with_trouble },
-						-- n = { ["<c-t>"] = require("trouble.providers.telescope").open_with_trouble },
+						i = {
+							["<c-t>"] = require("trouble.sources.telescope").open,
+							["<c-f>"] = require("telescope.actions").to_fuzzy_refine,
+						},
+						n = {
+							["<c-t>"] = require("trouble.sources.telescope").open,
+						},
 					},
 				},
 				pickers = {
