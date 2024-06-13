@@ -948,6 +948,19 @@ require("lazy").setup({
 			{ "<leader>cr " },
 		},
 	},
+
+	{ -- lets bring AI through local LLMs (requires ollama.ai)
+		"David-Kunz/gen.nvim",
+		opts = {
+			model = "llama3", -- The default model to use.
+			host = "localhost", -- The host running the Ollama service.
+			port = "11434", -- The port on which the Ollama service is listening.
+			quit_map = "q", -- set keymap for close the response window
+			retry_map = "<c-r>", -- set keymap to re-send the current prompt
+			display_mode = "float", -- The display mode. Can be "float" or "split" or "horizontal-split".
+		},
+		cmd = { "Gen" },
+	},
 })
 
 -- vim: ts=2 sts=2 sw=2 et
