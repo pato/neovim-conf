@@ -933,6 +933,21 @@ require("lazy").setup({
 		cmd = "Trouble",
 		opts = {},
 	},
+
+	{ -- almost like an IDE signature refactor, \cr
+		"SleepySwords/change-function.nvim",
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+		},
+		config = function()
+			vim.api.nvim_set_keymap("n", "<leader>cr", "", {
+				callback = require("change-function").change_function,
+			})
+		end,
+		keys = {
+			{ "<leader>cr " },
+		},
+	},
 })
 
 -- vim: ts=2 sts=2 sw=2 et
