@@ -1001,6 +1001,12 @@ require("lazy").setup({
 			},
 		},
 	},
+
+	{ -- spell checking as a diagnostic (to toggle :set spell)
+		"ravibrock/spellwarn.nvim",
+		event = "VeryLazy",
+		config = true,
+	},
 })
 
 -- vim: ts=2 sts=2 sw=2 et
