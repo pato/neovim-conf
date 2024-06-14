@@ -961,6 +961,46 @@ require("lazy").setup({
 		},
 		cmd = { "Gen" },
 	},
+
+	{ -- LSP call hierarchy (just like IntelliJ has it)
+		"ldelossa/litee-calltree.nvim",
+		dependencies = {
+			{
+				"ldelossa/litee.nvim",
+				event = "VeryLazy",
+				opts = {
+					notify = { enabled = false },
+					panel = {
+						orientation = "bottom",
+						panel_size = 10,
+					},
+				},
+				config = function(_, opts)
+					require("litee.lib").setup(opts)
+				end,
+			},
+		},
+		event = "VeryLazy",
+		opts = {
+			on_open = "panel",
+			map_resize_keys = false,
+		},
+		config = function(_, opts)
+			require("litee.calltree").setup(opts)
+		end,
+		keys = {
+			{
+				"<leader>gh",
+				"<CMD>lua vim.lsp.buf.incoming_calls()<CR>",
+				desc = "[G]o to incoming call [H]ierarchy",
+			},
+			{
+				"<leader>go",
+				"<CMD>lua vim.lsp.buf.outgoing_calls()<CR>",
+				desc = "[G]o to [O]utgoing call hierarchy",
+			},
+		},
+	},
 })
 
 -- vim: ts=2 sts=2 sw=2 et
