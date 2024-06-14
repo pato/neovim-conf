@@ -1002,7 +1002,7 @@ require("lazy").setup({
 		},
 	},
 
-	{ -- spell checking as a diagnostic (to toggle :set spell)
+	{ -- spell checking as a diagnostic (to enable :set spell)
 		"ravibrock/spellwarn.nvim",
 		event = "VeryLazy",
 		config = true,
