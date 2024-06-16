@@ -202,6 +202,16 @@ require("lazy").setup({
 		event = "User LazyColorscheme",
 	},
 
+	{ -- About A dark and light Neovim theme written in fennel, inspired by IBM Carbon.
+		"nyoom-engineering/oxocarbon.nvim",
+		event = "User LazyColorscheme",
+	},
+
+	{ -- Atom's iconic One Dark theme. Cacheable, fully customisable, Tree-sitter and LSP semantic token support.
+		"olimorris/onedarkpro.nvim",
+		event = "User LazyColorscheme",
+	},
+
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
