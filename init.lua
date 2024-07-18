@@ -742,7 +742,7 @@ require("lazy").setup({
 			},
 			sections = {
 				-- commenting this for now as it forces loading of overseer, need to figure out how to add a section but still have it be lazy
-				-- lualine_x = { "overseer" },
+				lualine_x = { "overseer" },
 				lualine_y = { "filetype" },
 			},
 			extensions = { "lazy", "overseer", "oil", "mason", "toggleterm" },
