@@ -228,6 +228,10 @@ require("lazy").setup({
 		event = "User LazyColorscheme",
 	},
 
+	{ -- make it possible to open large files by disabling lots of stuff
+		"LunarVim/bigfile.nvim",
+	},
+
 	{ -- Adds git related signs to the gutter, as well as utilities for managing changes
 		"lewis6991/gitsigns.nvim",
 		opts = {},
