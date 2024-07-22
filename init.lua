@@ -1038,6 +1038,19 @@ require("lazy").setup({
 			},
 		},
 	},
+
+	{
+		"andrewferrier/debugprint.nvim",
+		opts = {},
+		keys = {
+			{ "g?", mode = "n" },
+			{ "g?", mode = "x" },
+		},
+		cmd = {
+			"ToggleCommentDebugPrints",
+			"DeleteDebugPrints",
+		},
+	},
 })
 
 -- vim: ts=2 sts=2 sw=2 et
