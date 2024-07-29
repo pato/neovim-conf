@@ -989,7 +989,7 @@ require("lazy").setup({
 		config = true,
 	},
 
-	{
+	{ -- helper for commands, registers, and more
 		"folke/which-key.nvim",
 		event = "VeryLazy",
 		opts = {
@@ -1006,7 +1006,7 @@ require("lazy").setup({
 		},
 	},
 
-	{
+	{ -- never too pro to debug print (g?v)
 		"andrewferrier/debugprint.nvim",
 		opts = {},
 		keys = {
@@ -1019,7 +1019,7 @@ require("lazy").setup({
 		},
 	},
 
-	{
+	{ -- render Markdown! toggle with :RenderMarkdown toggle
 		"MeanderingProgrammer/markdown.nvim",
 		main = "render-markdown",
 		name = "render-markdown",
