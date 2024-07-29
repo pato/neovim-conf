@@ -1051,6 +1051,14 @@ require("lazy").setup({
 			"DeleteDebugPrints",
 		},
 	},
+
+	{
+		"MeanderingProgrammer/markdown.nvim",
+		main = "render-markdown",
+		name = "render-markdown",
+		opts = {},
+		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
+	},
 })
 
 -- vim: ts=2 sts=2 sw=2 et
