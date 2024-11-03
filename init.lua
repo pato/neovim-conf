@@ -238,6 +238,12 @@ require("lazy").setup({
 		event = "InsertEnter",
 		config = function()
 			require("nvim-autopairs").setup({})
+
+			-- remove single quote in ocaml (since its used for lifetimes)
+			--require("nvim-autopairs").get_rules("'")[1].not_filetypes = { "ocaml", "ocamlinterface" }
+			-- ^^ didn't work, so let's just remove the rule entirely.
+			require("nvim-autopairs").remove_rule("'")
+
 			-- If you want to automatically add `(` after selecting a function or method
 			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 			local cmp = require("cmp")
@@ -490,6 +496,8 @@ require("lazy").setup({
 				-- But for many setups, the LSP (`tsserver`) will work just fine
 				-- tsserver = {},
 				--
+				ocamlformat = {},
+				ocamllsp = {},
 
 				lua_ls = {
 					-- cmd = {...},
